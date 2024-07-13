@@ -37,6 +37,7 @@ CREATE TABLE employees
     job_id            NUMBER,
     user_grp          NUMBER (3) DEFAULT 0,
     passw             VARCHAR2 (32),
+    status VARCHAR2 (10),
     ent_by            NUMBER,
     ent_date          DATE,
     upd_by            NUMBER,
@@ -47,6 +48,27 @@ CREATE TABLE employees
     CONSTRAINT employess_u03 UNIQUE (nid)
 );
 /
+SET DEFINE OFF;
+Insert into EMPLOYEES
+   (ID, EMP_ID, F_NAME, L_NAME, DOB, 
+    MOBILE, EMAIL, FATHER, MOTHER, GENDER, 
+    HEIGHT, WEIGHT, BLOOD, NID, ADDRESS, 
+    C_POST, C_THANA, C_DISTRICT, C_DIVISION, P_ADDRESS, 
+    P_POST, P_THANA, P_DISTRICT, P_DIVISION, JOIN_DATE, 
+    MARITAL_STATUS, EMP_TYPE, DEPT_ID, LOC_ID, BRANCH_ID, 
+    DESIG_ID, COM_ID, JOB_ID, USER_GRP, PASSW, 
+    ENT_BY, ENT_DATE, UPD_BY, UPD_DATE, STATUS)
+ Values
+   (1, 'IPI-009129', 'Shadiqur', 'Rahman', NULL, 
+    NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, 1, '123', 
+    NULL, NULL, NULL, NULL, 'A');
+COMMIT;
+
 
 CREATE TABLE emp_education
 (

@@ -1,0 +1,287 @@
+[
+  {
+    "sl": "1.",
+    "name": "University of Dhaka",
+    "website": "www.du.ac.bd"
+  },
+  {
+    "sl": "2.",
+    "name": "University of Rajshahi",
+    "website": "www.ru.ac.bd"
+  },
+  {
+    "sl": "3.",
+    "name": "Bangladesh Agricultural University",
+    "website": "www.bau.edu.bd"
+  },
+  {
+    "sl": "4.",
+    "name": "Bangladesh University of Engineering & Technology",
+    "website": "www.buet.ac.bd"
+  },
+  {
+    "sl": "5.",
+    "name": "University of Chittagong",
+    "website": "www.cu.ac.bd"
+  },
+  {
+    "sl": "6.",
+    "name": "Jahangirnagar University",
+    "website": "www.juniv.edu"
+  },
+  {
+    "sl": "7.",
+    "name": "Islamic University, Bangladesh",
+    "website": "www.iu.ac.bd"
+  },
+  {
+    "sl": "8.",
+    "name": "Shahjalal University of Science & Technology",
+    "website": "www.sust.edu"
+  },
+  {
+    "sl": "9.",
+    "name": "Khulna University",
+    "website": "www.ku.ac.bd"
+  },
+  {
+    "sl": "10.",
+    "name": "National University",
+    "website": "www.nu.edu.bd"
+  },
+  {
+    "sl": "11.",
+    "name": "Bangladesh Open University",
+    "website": "www.bou.ac.bd"
+  },
+  {
+    "sl": "12.",
+    "name": "Bangabandhu Sheikh Mujib Medical University",
+    "website": "www.bsmmu.ac.bd"
+  },
+  {
+    "sl": "13.",
+    "name": "Gazipur Agricultural University",
+    "website": "www.bsmrau.edu.bd"
+  },
+  {
+    "sl": "14.",
+    "name": "Hajee Mohammad Danesh Science & Technology University",
+    "website": "www.hstu.ac.bd"
+  },
+  {
+    "sl": "15.",
+    "name": "Mawlana Bhashani Science & Technology University",
+    "website": "www.mbstu.ac.bd"
+  },
+  {
+    "sl": "16.",
+    "name": "Patuakhali Science And Technology University",
+    "website": "www.pstu.ac.bd"
+  },
+  {
+    "sl": "17.",
+    "name": "Sher-e-Bangla Agricultural University",
+    "website": "www.sau.edu.bd"
+  },
+  {
+    "sl": "18.",
+    "name": "Chittagong University of Engineering & Technology (CUET)",
+    "website": "www.cuet.ac.bd"
+  },
+  {
+    "sl": "19.",
+    "name": "Rajshahi University of Engineering & Technology (RUET)",
+    "website": "www.ruet.ac.bd"
+  },
+  {
+    "sl": "20.",
+    "name": "Khulna University of Engineering & Technology (KUET)",
+    "website": "www.kuet.ac.bd"
+  },
+  {
+    "sl": "21.",
+    "name": "Dhaka University of Engineering & Technology (DUET)",
+    "website": "www.duet.ac.bd"
+  },
+  {
+    "sl": "22.",
+    "name": "Noakhali Science & Technology University",
+    "website": "www.nstu.edu.bd"
+  },
+  {
+    "sl": "23.",
+    "name": "Jagannath University",
+    "website": "www.jnu.ac.bd"
+  },
+  {
+    "sl": "24.",
+    "name": "Comilla University",
+    "website": "www.cou.ac.bd"
+  },
+  {
+    "sl": "25.",
+    "name": "Jatiya Kabi Kazi Nazrul Islam University",
+    "website": "www.jkkniu.edu.bd"
+  },
+  {
+    "sl": "26.",
+    "name": "Chittagong Veterinary and Animal Sciences University",
+    "website": "www.cvasu.ac.bd"
+  },
+  {
+    "sl": "27.",
+    "name": "Sylhet Agricultural University",
+    "website": "www.sau.ac.bd"
+  },
+  {
+    "sl": "28.",
+    "name": "Jessore University of Science & Technology",
+    "website": "www.just.edu.bd"
+  },
+  {
+    "sl": "29.",
+    "name": "Pabna University of Science and Technology",
+    "website": "www.pust.ac.bd"
+  },
+  {
+    "sl": "30.",
+    "name": "Begum Rokeya University, Rangpur",
+    "website": "www.brur.ac.bd"
+  },
+  {
+    "sl": "31.",
+    "name": "Bangladesh University of Professionals",
+    "website": "www.bup.edu.bd"
+  },
+  {
+    "sl": "32.",
+    "name": "Gopalganj Science & Technology University",
+    "website": "www.bsmrstu.edu.bd"
+  },
+  {
+    "sl": "33.",
+    "name": "Bangladesh University of Textiles",
+    "website": "www.butex.edu.bd"
+  },
+  {
+    "sl": "34.",
+    "name": "University of Barishal",
+    "website": "www.bu.ac.bd"
+  },
+  {
+    "sl": "35.",
+    "name": "Rangamati Science and Technology University",
+    "website": "www.rmstu.edu.bd"
+  },
+  {
+    "sl": "36.",
+    "name": "Bangladesh Maritime University",
+    "website": "www.bsmrmu.edu.bd"
+  },
+  {
+    "sl": "37.",
+    "name": "Islamic Arabic University",
+    "website": "www.iau.edu.bd"
+  },
+  {
+    "sl": "38.",
+    "name": "Chittagong Medical University",
+    "website": "www.cmu.edu.bd"
+  },
+  {
+    "sl": "39.",
+    "name": "Rajshahi Medical University",
+    "website": "www.rmu.edu.bd"
+  },
+  {
+    "sl": "40.",
+    "name": "Rabindra University, Bangladesh",
+    "website": "www.rub.ac.bd"
+  },
+  {
+    "sl": "41.",
+    "name": "Gazipur Digital University",
+    "website": "www.bdu.ac.bd"
+  },
+  {
+    "sl": "42.",
+    "name": "Netrokona University",
+    "website": "https://www.shu.edu.bd/"
+  },
+  {
+    "sl": "43.",
+    "name": "Khulna Agricultural University",
+    "website": "www.kau.edu.bd"
+  },
+  {
+    "sl": "44.",
+    "name": "Jamalpur Science and Technology University",
+    "website": "https://bsfmstu.ac.bd/"
+  },
+  {
+    "sl": "45.",
+    "name": "Bangamata Sheikh Fazilatunessa Mujib Medical University, Sylhet",
+    "website": "www.bsfmmu.edu.bd"
+  },
+  {
+    "sl": "46.",
+    "name": "Aviation And Aerospace University, Bangladesh",
+    "website": "www.bsmraau.edu.bd"
+  },
+  {
+    "sl": "47.",
+    "name": "Chandpur Science and Technology University",
+    "website": "www.cstu.ac.bd"
+  },
+  {
+    "sl": "48.",
+    "name": "Kishoreganj University",
+    "website": "bsmru.ac.bd."
+  },
+  {
+    "sl": "49.",
+    "name": "Hobiganj Agricultural University",
+    "website": "www.hau.ac.bd"
+  },
+  {
+    "sl": "50.",
+    "name": "Sheikh Hasina Medical University, Khulna",
+    "website": "www.shmu.ac.bd"
+  },
+  {
+    "sl": "51.",
+    "name": "Kurigram Agricultural University",
+    "website": "www.kuriau.edu.bd"
+  },
+  {
+    "sl": "52.",
+    "name": "Sunamganj Science and Technology University",
+    "website": "www.sstu.ac.bd"
+  },
+  {
+    "sl": "53.",
+    "name": "Pirojpur Science & Technology University",
+    "website": "www.bsmrstup.ac.bd"
+  },
+  {
+    "sl": "54.",
+    "name": "Naogaon  University",
+    "website": null
+  },
+  {
+    "sl": "55.",
+    "name": "Meherpur University",
+    "website": null
+  },
+  {
+    "sl": "56.",
+    "name": "Narayanganj Science and Technology University",
+    "website": null
+  },
+  {
+    "sl": "57.",
+    "name": "Shariatpur Agricultural University",
+    "website": null
+  }
+]

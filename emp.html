@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Information</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      margin: 40px;
+    }
+
+    .header {
+      text-align: center;
+      color: navy;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .header h2 {
+      font-size: 22px;
+      margin: 5px 0;
+    }
+
+    .header h3 {
+      font-size: 20px;
+      margin: 15px 0;
+      text-decoration: underline;
+      color: black;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 30px;
+    }
+
+    .logo {
+      width: 100px;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .info-table {
+      width: 75%;
+    }
+
+    .info-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .info-table td {
+      vertical-align: top;
+      padding: 4px;
+    }
+
+    .info-table .number {
+      color: navy;
+      font-weight: bold;
+      width: 30px;
+    }
+
+    .info-table .label {
+      font-weight: bold;
+      width: 180px;
+    }
+
+    .info-table .colon {
+      width: 10px;
+    }
+
+    .employee-photo {
+      width: 140px;
+      margin-left: 30px;
+    }
+
+    .job-location {
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        
+      
+        <tr>
+          <td colspan="5">Father''s Name <span style="float:right"> : </span></td>
+          <td colspan="5">'||emp.father||'</td>
+          <td colspan="2">'||emp.mobile||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Mother''s Name <span style="float:right"> : </span></td>
+          <td colspan="5">'||emp.mother||'</td>
+          <td colspan="2">'||emp.mobile||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Religion <span style="float:right"> : </span></td>
+          <td colspan="7">'||emp.DESIGNATION||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">NID <span style="float:right"> : </span></td>
+          <td colspan="7">'||emp.nid||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Email <span style="float:right"> : </span></td>
+          <td colspan="7">'||emp.email||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Contact Number <span style="float:right"> : </span></td>
+          <td colspan="7">'||emp.mobile||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Blood Group <span style="float:right"> : </span></td>
+          <td colspan="7">'||null||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Marital Status <span style="float:right"> : </span></td>
+          <td colspan="7">'||null||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Spouse Name <span style="float:right"> : </span></td>
+          <td colspan="7">'||null||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Present Address <span style="float:right"> : </span></td>
+          <td colspan="7">'||emp.address||'</td>
+        </tr>
+      
+        <tr>
+          <td colspan="5">Permanent Address <span style="float:right"> : </span></td>
+          <td colspan="7">'||emp.p_address||'</td>
+        </tr>
+      </table>
+      
+ 
+
+
+</body>
+</html>

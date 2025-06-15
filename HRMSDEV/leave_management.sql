@@ -170,6 +170,7 @@ CREATE TABLE t_shift                                         --- Shifting Duty
     start_time     VARCHAR2 (30),
     end_time       VARCHAR2 (30),
     active_flag    CHAR (1) DEFAULT 'Y' CHECK (active_flag IN ('Y', 'N')),
+    nextday_flag  CHAR (1) DEFAULT 'N' CHECK (nextday_flag IN ('Y', 'N')),
     ent_by         NUMBER,
     ent_date       DATE DEFAULT SYSDATE,
     upd_by         NUMBER,
@@ -182,6 +183,8 @@ CREATE TABLE employee_shift                                  --- Shifting Duty
     emp_id        NUMBER NOT NULL,
     shift_id      NUMBER,
     shift_date    DATE,
+    status        VARCHAR2 (20)
+                        CHECK (status IN ('A', 'I', 'C')),
     ent_by        NUMBER,
     ent_date      DATE DEFAULT SYSDATE,
     upd_by        NUMBER,
@@ -300,3 +303,43 @@ CREATE TABLE t_attendance
     CONSTRAINT fk_att_device_r FOREIGN KEY (out_loc)
         REFERENCES att_devices (id)
 );
+
+
+
+CREATE TABLE attendance_details
+(
+    attendance_id       NUMBER PRIMARY KEY,
+    emp_id              NUMBER,
+    attendance_date     DATE,
+    dayofweek         VARCHAR2 (20),
+    regular_in_time     DATE,
+    regular_out_time    DATE,
+    shift_start_time    DATE,
+    shift_end_time      DATE,
+    status              VARCHAR2 (20),
+    in_time             DATE,
+    out_time            DATE,    
+    late_in             VARCHAR2 (10),
+    early_out           VARCHAR2 (10),
+    in_location         VARCHAR2 (50),
+    out_location        VARCHAR2 (50),
+    duty_hours          NUMBER,
+    remarks             VARCHAR2 (255),
+    com_id              NUMBER,
+    weekend          NUMBER,
+    nextday          NUMBER,
+    holiday          NUMBER,
+    FOREIGN KEY (emp_id) REFERENCES employees (id),
+    FOREIGN KEY (com_id) REFERENCES company (id)
+);
+/
+
+
+
+
+
+
+
+
+
+

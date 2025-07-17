@@ -1,18 +1,15 @@
-'IPI-008113',
-'IPI-001381',
-'IPI-001380',
-'IPI-001382',
-'IPI-001383',
-'IPI-002001',
-'IPI-001378',
-'INM-000028',
-'INM-000010',
-'INM-000008',
-'INM-000030'
-
-
-'INM-000027','IPI-006050'
-
-
-
-'IPI-008113','IPI-001381','IPI-001380','IPI-001382','IPI-001383','IPI-002001','IPI-001378','INM-000028','INM-000010','INM-000008','INM-000030'
+when  SUB_POSITION =  'Centre-Back' then 'CB'
+when  SUB_POSITION =  'Centre-Forward' then 'CF'
+when  SUB_POSITION =  'Left Midfield' then 'LMF'
+when  SUB_POSITION =  'Right Winger' then 'RWF'
+when  SUB_POSITION =  'Right Back' then 'RB'
+when  SUB_POSITION =  'Left Back' then 'LB'
+when  SUB_POSITION =  'Right Midfield' then 'RMF'
+when  SUB_POSITION =  'Left Winger' then 'LWF'
+when  SUB_POSITION =  'Attacking Midfield' then 'AMF'
+when  SUB_POSITION =  'Defensive Midfield' then 'DMF'
+when  SUB_POSITION =  'Goalkeeper' then 'GK'
+when  SUB_POSITION =  'Second Striker' then 'SS'
+when  SUB_POSITION =  'Central Midfield' then 'CMF'
+when  SUB_POSITION =  'Right-Back' then 'RB'
+when  SUB_POSITION =  'Left-Back' then 'LB'

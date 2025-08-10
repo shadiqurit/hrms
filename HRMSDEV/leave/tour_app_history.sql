@@ -1,0 +1,38 @@
+CREATE TABLE TOUR_APP_HISTORY
+(
+  ID               NUMBER                       NOT NULL,
+  TOUR_ID         NUMBER,
+  APPROVER_LEVEL   VARCHAR2(50 BYTE),
+  APPROVER_ID      NUMBER,
+  APPROVAL_DATE    DATE,
+  APPROVAL_STATUS  VARCHAR2(50 BYTE),
+  COMMENTS         VARCHAR2(300 BYTE),
+  COM_ID           NUMBER,
+  ENT_DATE         DATE                         DEFAULT SYSDATE,
+  ENT_BY           NUMBER,
+  UPD_DATE         DATE,
+  UPD_BY           NUMBER
+);
+
+
+CREATE OR REPLACE TRIGGER trg_TOUR_app_history_pk
+    BEFORE INSERT OR UPDATE
+    ON TOUR_app_history
+    FOR EACH ROW
+BEGIN
+    IF :new.id IS NULL
+    THEN
+        SELECT NVL (MAX (id), 0) + 1 INTO :new.id FROM TOUR_app_history;
+    END IF;
+END;
+/
+
+
+ALTER TABLE TOUR_APP_HISTORY ADD (
+  FOREIGN KEY (TOUR_ID) 
+  REFERENCES TOUR_REQ(TOUR_ID)
+  ENABLE VALIDATE);
+
+
+
+  

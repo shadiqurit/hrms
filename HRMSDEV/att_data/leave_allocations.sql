@@ -10,3 +10,7 @@ CREATE SEQUENCE hr_leave_allocation_seq;
 BEGIN
     p_leave_allocation (2025);
 END;
+
+--LEAVE_ALLOCATION
+
+--LEAVE_CONSUMPTION

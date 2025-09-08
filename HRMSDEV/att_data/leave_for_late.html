@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Wise Manual Attendance</title>
+  <style>
+    /* --- Page + Typography --- */
+    :root {
+      --border: #1f1f1f;
+      --muted: #444;
+      --accent: #0b4a9e;
+      --bg: #ffffff;
+      --title: #000;
+    }o
+    html,
+    *{box-sizing:border-box}
+    body { font-family: Arial, Helvetica, sans-serif; 
+        color:#111; margin:0; padding:24px; }
+
+    .page {
+      width: 940px; /* close to A4 @ ~96dpi */
+      margin: 0 auto;
+            
+      }
+      /* Header */
+    .report-header {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      align-items: center;
+      text-align: center;
+      column-gap: 2px;
+      padding: 2px 0 10px 0;
+      border-bottom: 2px solid var(--rule);
+    }
+    .logo {
+      width: 64px; height: 64px; object-fit: contain;
+      margin-left: 125px;     
+
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .title h1 {
+      font-size: 22px;
+      margin: 0; font-weight: 700;
+      
+    }
+    .title .subtitle {
+      font-size: 18px;     
+      font-weight: 600;
+    }
+
+    .pad { padding: 5px 18px; }
+
+    /* --- Header --- */
+   .meta { display:flex; justify-content:space-between; margin-top:1px; 
+        font-size: 12px; }
+    .meta strong { font-weight:700; }
+
+    .ftdt{font-size: 13px;}
+
+    /* --- Employee Block --- */
+    .info { display:grid; grid-template-columns: 1fr 1fr;
+         gap: 6px 18px; font-size: 13px; border:1px solid var(--border);
+           padding:12px 14px; border-bottom:none;
+         } 
+    .info div { display:flex; gap:6px; }
+    .label { min-width: 130px; color:#000; font-weight:700; }
+
+    /* --- Table --- */
+    table { width: 100%; border-collapse: collapse; }
+    
+    thead th { 
+        border:1px solid black;  
+        text-align:center; }
+    tbody td { border:1px solid var(--border); padding:6px 6px; font-size:13px; }
+
+    /* Column sizing close to the screenshot */
+    colgroup col:nth-child(1){ width: 16%; }
+    colgroup col:nth-child(2){ width: 13%; }
+    colgroup col:nth-child(3){ width: 14%; }
+    colgroup col:nth-child(4){ width: 14%; }
+    colgroup col:nth-child(5){ width: 11%; }
+    colgroup col:nth-child(6){ width: 32%; }
+
+    .ull{margin-bottom: 15px; }
+
+    .meta2{
+        font-size: 13px; font-weight: 600;
+        margin-bottom: 5px;
+      
+     }
+
+    .footer { 
+      margin-top: 12px; padding: 10px 50px; 
+     }
+      
+
+    /* --- Print styles --- */
+    @media print {
+      html, body { background:#fff; }
+      body { padding:0; }
+      .page { width:auto; margin:0; border:0; box-shadow:none; }
+      .logo { border-color:#000; }
+      thead th { background:#ddd !important; 
+        -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+<div class="report-header">
+      <!-- Replace src with your actual logo path -->
+      <img class="logo" src="logo.png" alt="IBN SINA Logo" />
+      <div class="title">
+        <h1 class="ull"> The IBN SINA Pharmaceutical Industry PLC</h1>
+        <div class="subtitle">Leave for Late Attendance</div>
+      </div>
+    </div>
+
+    <div class="header pad">      
+      <div class="meta">
+        <div> </div>
+        <div><strong>Print time</strong> : 08-SEP-25&nbsp;&nbsp;11:54 AM</div>
+      </div>
+    </div>
+<div class="table-wrap">
+      
+<section class="report" role="region" aria-label="Leave Summary Report">
+    
+
+    <div class="meta pad">
+       <div class="meta2">Department : <strong>International Business</strong></div>
+      <div class="meta2" >Year/Month : <strong>202405</strong></div>
+    </div>
+
+      
+    
+
+    <table aria-describedby="desc">
+      <colgroup>
+        <col class="empcode" />
+        <col class="name" />
+        <col class="designation" />
+        <col class="department" />
+        <col class="yearmonth" />
+        <col class="leavetype" />
+        <col class="days" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Empcode</th>
+          <th scope="col">Employee<br/>Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Department</th>
+          <th scope="col">Year<br/>Month</th>
+          <th scope="col">Leave<br/>Type</th>
+          <th scope="col">Days</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample rows faithfully mimicking the screenshot layout -->
+        <tr>
+          <td>IPI-000805</td>
+          <td>MD. MONIRUL ISLAM</td>
+          <td>SENIOR MANAGER</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>LWP</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-000805</td>
+          <td>MD. MONIRUL ISLAM</td>
+          <td>SENIOR MANAGER</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>EL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-002358</td>
+          <td>MD. MUMINUL BARI</td>
+          <td>SR. EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>CL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-002358</td>
+          <td>MD. MUMINUL BARI</td>
+          <td>SR. EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>LWP</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-002689</td>
+          <td>MAKBUL ELAHI</td>
+          <td>DEPUTY GENERAL MANAGER</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>EL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-004019</td>
+          <td>MD. ENAMUL HAQUE</td>
+          <td>EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>LWP</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-004019</td>
+          <td>MD. ENAMUL HAQUE</td>
+          <td>EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>CL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-004032</td>
+          <td>MD. AMINUL ISLAM</td>
+          <td>Jr. Dispatch Clerk</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>EL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-005601</td>
+          <td>MD. SHOHARAB HOSSAIN</td>
+          <td>EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>EL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-006051</td>
+          <td>TAWSHIF RAHMAN</td>
+          <td>EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>LWP</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-006548</td>
+          <td>MD. ASRAFUL ISLAM</td>
+          <td>SENIOR EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>CL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-007206</td>
+          <td>MOHAMMAD SHARIF HASAN</td>
+          <td>EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>LWP</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-009114</td>
+          <td>MD. JUBAYER AL AZAD</td>
+          <td>EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>EL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>IPI-009907</td>
+          <td>MD. NAZMUL HAQUE</td>
+          <td>ASSISTANT EXECUTIVE</td>
+          <td>International Business</td>
+          <td>202405</td>
+          <td>CL</td>
+          <td></td>
+        </tr>
+        <!-- Duplicate/extra rows can be added here to match your data exactly -->
+      </tbody>
+    </table>
+
+    <p id="desc" class="sr-only" aria-hidden="true"></p>
+  </section>  
+    
+  </div>
+</body>
+</html>

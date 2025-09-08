@@ -24,18 +24,19 @@
             
       }
       /* Header */
-    .report-header {
+     .report-header {
       display: grid;
       grid-template-columns: 64px 1fr;
       align-items: center;
+      text-align: center;
       column-gap: 2px;
-      padding: 2px  0 3px 0;
-      margin-bottom: 5px;
-      border-bottom: 2px solid var(--title);
+      padding: 2px 0 10px 0;
+      border-bottom: 2px solid var(--rule);
     }
     .logo {
-      width: 60px; height: 60px; object-fit: contain;
-      
+      width: 64px; height: 64px; object-fit: contain;
+      margin-left: 125px;     
+
     }
     .title {
       display: flex;
@@ -57,10 +58,8 @@
     /* --- Header --- */
    .meta { display:flex; justify-content:space-between; margin-top:2px; 
         font-size: 12px; }
-    .meta strong { font-weight:700; }
-
-    .ftdt{font-size: 13px;}
-
+   .meta strong { font-weight:700; }
+   .ftdt{font-size: 13px;}
     /* --- Employee Block --- */
     .info { display:grid; grid-template-columns: 1fr 1fr;
          gap: 6px 18px; font-size: 13px; border:1px solid var(--border);
@@ -124,7 +123,7 @@
       <img class="logo" src="logo.png" alt="IBN SINA Logo" />
       <div class="title">
         <h1 class="ull"> The IBN SINA Pharmaceutical Industry PLC</h1>
-        <div class="subtitle">Employee Wise Manual Attendance</div>
+        <div class="subtitle">Monthly Leave Report</div>
       </div>
     </div>
   <section class="report" aria-label="Human Resource Leave Summary">

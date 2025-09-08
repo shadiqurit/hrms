@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Attendance Status</title>
+  <style>
+    @page { size: A4; margin: 12mm; }
+    :root {
+      --ink: #111;
+      --muted: #444;
+      --rule: #000;
+    }
+    html, body { height: 100%; }
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      margin: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      line-height: 1.25;
+    }
+
+    .page {
+      width: 190mm; /* keep layout stable for A4 */
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Header */
+    .report-header {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      align-items: center;
+      column-gap: 2px;
+      padding: 2px 0 10px 0;
+      border-bottom: 2px solid var(--rule);
+    }
+    .logo {
+      width: 64px; height: 64px; object-fit: contain;
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .title h1 {
+      font-size: 20px;
+      margin: 0; font-weight: 700;
+    }
+    .title .subtitle {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Meta rows */
+    .meta { margin-top: 8px; }
+    .meta-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      margin-bottom: 6px;
+      font-size: 9px;
+    }
+    .kv { display: inline-flex; gap: 18px; }
+    .kv span { display: inline-block; min-width: max(90px, 15ch); }
+    .right { justify-self: end; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid var(--rule); padding: 2px 2px; 
+            font-size: 09px; }
+    thead th { text-transform: none;font-size: 10px; font-weight: bold; }
+    thead tr:nth-child(1) th { background: #f3f3f3; }
+    thead tr:nth-child(2) th { background: #f9f9f9; }
+
+    .center { text-align: center; }
+    .right-txt { text-align: right; }
+
+    /* column sizing to match layout closely */
+    col.code { width: 45px; }
+    col.emp { width: 150px; }
+    col.desg { width:130px; }
+    col.stat { width: 50px; }
+    col.in { width: 55px; }
+    col.out { width: 55px; }
+    col.late { width: 30px; }
+    col.early { width: 30px; }
+    col.loc-in { width: 60px; }
+    col.loc-out { width: 60px; }
+
+    /* Summary */
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 300px;
+      margin-top: 8px;
+    }
+    .summary table { width: 100%; }
+    .summary td { padding: 4px 6px; font-size: 10px; font-weight: 700; }
+    .summary td:first-child { width: 70%; }
+
+    /* Small helpers */
+    .muted { color: var(--muted); }
+    .no-border { border: none !important; }
+    .mt-8 { margin-top: 8px; }
+    .mt-12 { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <div class="report-header">
+      <!-- Replace src with your actual logo path -->
+      <img class="logo" src="logo.png" alt="IBN SINA Logo" />
+      <div class="title">
+        <h1>The IBN SINA Pharmaceutical Industry PLC</h1>
+        <div class="subtitle">Daily Attendance Status</div>
+      </div>
+    </div>
+
+    <!-- Meta information -->
+    <div class="meta">
+      <div class="meta-row">
+        <div class="kv">
+          <div><strong>Date</strong>: 04-SEP-25</div>
+        </div>
+        <div class="right"><strong>Print time</strong> : 08-SEP-25&nbsp;&nbsp;09:31&nbsp;AM</div>
+    </div>
+    <div class="meta">
+      <div class="meta-row">
+        <div class="kv">
+          <div><strong>Location</strong>: Head Office</div>
+        </div>
+      
+    </div>
+
+      <div class="meta-row">
+        <div class="kv">          
+          <div><strong>Department</strong>: Information Technology</div>
+        </div>
+        <div class="right"><strong>Section</strong> : Information Technology </div>
+      </div>
+    </div>
+
+    <!-- Attendance table -->
+    <table class="mt-8">
+      <colgroup>
+        <col class="code">
+        <col class="emp">
+        <col class="desg">
+        <col class="stat">
+        <col class="in">
+        <col class="out">
+        <col class="late">
+        <col class="early">
+        <col class="loc-in">
+        <col class="loc-out">
+      </colgroup>
+      <thead>
+        <tr>
+          <th rowspan="2">Code</th>
+          <th rowspan="2">Employee Name</th>
+          <th rowspan="2">Designation</th>
+          <th rowspan="2" class="center">Status</th>
+          <th rowspan="2" class="center">IN<br/>Time</th>
+          <th rowspan="2" class="center">OUT<br/>Time</th>
+          <th rowspan="2" class="center">Late<br/>IN</th>
+          <th rowspan="2" class="center">Early<br/>Out</th>
+          <th colspan="2" class="center">Location</th>
+        </tr>
+        <tr>
+          <th class="center">IN</th>
+          <th class="center">OUT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows reproduced to match the sample layout; edit values as needed -->
+        <tr>
+          <td class="center">IPI-002760</td>
+          <td>KHONDKER ZAKIR HOSSAIN</td>
+          <td>DEPUTY GENERAL MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:02 AM</td>
+          <td class="center">05:54 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-000040</td>
+          <td>MD. MIZANUR RAHMAN</td>
+          <td>SENIOR MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:04 AM</td>
+          <td class="center">05:34 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-004598</td>
+          <td>MD. RASHEDUL ARIFIN</td>
+          <td>MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:07 AM</td>
+          <td class="center">07:33 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-007630</td>
+          <td>MD. RAIHAN KHAN</td>
+          <td>MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:01 AM</td>
+          <td class="center">05:34 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-004162</td>
+          <td>NOOR MOHAMMAD</td>
+          <td>DEPUTY MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:21 AM</td>
+          <td class="center">05:43 PM</td>
+          <td class="center">21</td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-005129</td>
+          <td>SHIBLIL AHMED</td>
+          <td>DEPUTY MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:05 AM</td>
+          <td class="center">05:49 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 3</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-005451</td>
+          <td>MD. YASIR ARAFAT</td>
+          <td>DEPUTY MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:20 AM</td>
+          <td class="center">07:58 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-004613</td>
+          <td>MOHAMMAD LUTHFOR RAHAMAN</td>
+          <td>ASSISTANT MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:07 AM</td>
+          <td class="center">05:57 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 3</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-005128</td>
+          <td>SYEDA MONIRA SULTANA</td>
+          <td>ASSISTANT MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:03 AM</td>
+          <td class="center">07:56 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 3</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-009878</td>
+          <td>SK. MD. IMRAN</td>
+          <td>ASSISTANT MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">08:11 AM</td>
+          <td class="center">05:54 PM</td>
+          <td class="center">11</td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-009009</td>
+          <td>MD. NAZIM UDDIN</td>
+          <td>ASSISTANT MANAGER</td>
+          <td class="center">P</td>
+          <td class="center">09:56 AM</td>
+          <td class="center">03:11 PM</td>
+          <td class="center">116</td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-006379</td>
+          <td>MOHAMMAD NUR-E-ALAM SIDDIKY</td>
+          <td>SENIOR EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">07:59 AM</td>
+          <td class="center">03:11 PM</td>
+          <td class="center"></td>
+          <td class="center">116</td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-009129</td>
+          <td>MD. SHADIQUR RAHMAN</td>
+          <td>SENIOR EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">10:53 AM</td>
+          <td class="center">05:40 PM</td>
+          <td class="center">173</td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-000832</td>
+          <td>MD. ROKONUZZAMAN</td>
+          <td>EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">08:06 AM</td>
+          <td class="center">07:14 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-008015</td>
+          <td>MD. MUJAHIDUL ISLAM</td>
+          <td>ASSISTANT EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">07:59 AM</td>
+          <td class="center">09:02 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-008090</td>
+          <td>MD. KHALILUR RAHMAN</td>
+          <td>ASSISTANT EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">07:59 AM</td>
+          <td class="center">07:33 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 3</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-009900</td>
+          <td>RAYHAN AHMED</td>
+          <td>ASSISTANT EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">08:05 AM</td>
+          <td class="center">05:31 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 3</td>
+          <td>Head Office 3</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-009906</td>
+          <td>MD. ANAMUL HOQUE</td>
+          <td>ASSISTANT EXECUTIVE</td>
+          <td class="center">P</td>
+          <td class="center">07:59 AM</td>
+          <td class="center">04:08 PM</td>
+          <td class="center"></td>
+          <td class="center">82</td>
+          <td>Head Office 3</td>
+          <td>Head Office 2</td>
+        </tr>
+        <tr>
+          <td class="center">IPI-007514</td>
+          <td>ABDUL AHAD BHUIYA</td>
+          <td>JAN. ASSISTANT</td>
+          <td class="center">P</td>
+          <td class="center">07:56 AM</td>
+          <td class="center">09:03 PM</td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td>Head Office 2</td>
+          <td>Head Office 3</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Totals -->
+    <div class="summary mt-12">
+      <table>
+        <tr><td>Total Present:</td><td class="right-txt">19</td></tr>
+        <tr><td>Total LateIn:</td><td class="right-txt">4</td></tr>
+        <tr><td>Total EarlyOut:</td><td class="right-txt">1</td></tr>
+      </table>
+      <table>
+        <tr><td>Total Absent:</td><td class="right-txt">0</td></tr>
+        <tr><td>Total Tour:</td><td class="right-txt">0</td></tr>
+        <tr><td>Total Leave:</td><td class="right-txt">0</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Wise Manual Attendance</title>
+  <style>
+    /* --- Page + Typography --- */
+    :root {
+      --border: #1f1f1f;
+      --muted: #444;
+      --accent: #0b4a9e;
+      --bg: #ffffff;
+      --title: #000;
+    }o
+    html,
+    body { font-family: Arial, Helvetica, sans-serif; 
+        color:#111; margin:0; padding:24px; }
+
+    .page {
+      width: 940px; /* close to A4 @ ~96dpi */
+      margin: 0 auto;
+            
+      }
+      /* Header */
+    .report-header {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      align-items: center;
+      column-gap: 2px;
+      padding: 2px  0 3px 0;
+      border-bottom: 2px solid var(--title);
+    }
+    .logo {
+      width: 60px; height: 60px; object-fit: contain;
+      
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .title h1 {
+      font-size: 22px;
+      margin: 0; font-weight: 700;
+      
+    }
+    .title .subtitle {
+      font-size: 15px;     
+      font-weight: 600;
+    }
+
+    .pad { padding: 16px 18px; }
+
+    /* --- Header --- */
+   .meta { display:flex; justify-content:space-between; margin-top:2px; 
+        font-size: 12px; }
+    .meta strong { font-weight:700; }
+
+    .ftdt{font-size: 13px;}
+
+    /* --- Employee Block --- */
+    .info { display:grid; grid-template-columns: 1fr 1fr;
+         gap: 6px 18px; font-size: 13px; border:1px solid var(--border);
+           padding:12px 14px; border-bottom:none;
+         } 
+    .info div { display:flex; gap:6px; }
+    .label { min-width: 130px; color:#000; font-weight:700; }
+
+    /* --- Table --- */
+    table { width: 100%; border-collapse: collapse; }
+    
+    thead th { 
+        border:1px solid black;  
+        text-align:center; }
+    tbody td { border:1px solid var(--border); padding:6px 6px; font-size:13px; }
+
+    /* Column sizing close to the screenshot */
+    colgroup col:nth-child(1){ width: 16%; }
+    colgroup col:nth-child(2){ width: 13%; }
+    colgroup col:nth-child(3){ width: 14%; }
+    colgroup col:nth-child(4){ width: 14%; }
+    colgroup col:nth-child(5){ width: 11%; }
+    colgroup col:nth-child(6){ width: 32%; }
+
+    .ull{margin-bottom: 15px; }
+
+    .footer { 
+      margin-top: 12px; padding: 10px 50px; 
+     }
+      
+
+    /* --- Print styles --- */
+    @media print {
+      html, body { background:#fff; }
+      body { padding:0; }
+      .page { width:auto; margin:0; border:0; box-shadow:none; }
+      .logo { border-color:#000; }
+      thead th { background:#ddd !important; 
+        -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+<div class="report-header">
+      <!-- Replace src with your actual logo path -->
+      <img class="logo" src="logo.png" alt="IBN SINA Logo" />
+      <div class="title">
+        <h1 class="ull"> The IBN SINA Pharmaceutical Industry PLC</h1>
+        <div class="subtitle">Employee Wise Manual Attendance</div>
+      </div>
+    </div>
+
+    <div class="header pad">      
+      <div class="meta">
+        <div class="ftdt"><strong>Date</strong> : 01-JAN-25 to 08-SEP-25</div>
+        <div><strong>Print time</strong> : 08-SEP-25&nbsp;&nbsp;11:54 AM</div>
+      </div>
+    </div>
+
+    <!-- Employee details -->
+    <div class="info">
+      <div><span class="label">EmployeeCode:</span> <span>IPI-001024</span></div>
+      <div><span class="label">Designation:</span> <span>SR. DRIVER</span></div>
+      <div><span class="label">Employee Name:</span> <span>MD. AKTARUL ISLAM BADAL</span></div>
+      <div><span class="label">Department:</span> <span>Sales</span></div>
+    </div>
+
+    <!-- Attendance table -->
+    <div class="table-wrap">
+      <table>
+        <colgroup>
+          <col><col><col><col><col><col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Hours</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>21 Jan 2025</td><td>Tuesday</td><td>06:00 AM</td><td>10:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>22 Jan 2025</td><td>Wednesday</td><td>06:00 AM</td><td>10:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>26 Jan 2025</td><td>Sunday</td><td>06:00 AM</td><td>09:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>29 Jan 2025</td><td>Wednesday</td><td>07:00 AM</td><td>08:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>30 Jan 2025</td><td>Thursday</td><td>07:00 AM</td><td>08:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>08 Feb 2025</td><td>Saturday</td><td>08:00 AM</td><td>09:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>09 Feb 2025</td><td>Sunday</td><td>07:00 AM</td><td>09:00 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>10 Feb 2025</td><td>Monday</td><td>07:00 AM</td><td>05:30 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>19 Feb 2025</td><td>Wednesday</td><td>06:00 AM</td><td>05:30 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>20 Mar 2025</td><td>Thursday</td><td>08:00 AM</td><td>11:30 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>22 Mar 2025</td><td>Saturday</td><td>10:00 AM</td><td>04:17 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>23 Mar 2025</td><td>Sunday</td><td>07:55 AM</td><td>05:30 PM</td><td></td><td>out of area parking</td></tr>
+          <tr><td>25 Mar 2025</td><td>Tuesday</td><td>08:00 AM</td><td></td><td></td><td>out of area parking</td></tr>
+          <tr><td>02 May 2025</td><td>Friday</td><td>07:00 AM</td><td></td><td></td><td>Forget to Punch</td></tr>
+          <tr><td>05 May 2025</td><td>Monday</td><td>07:00 AM</td><td>07:00 PM</td><td></td><td>Forget to Punch</td></tr>
+          <tr><td>27 May 2025</td><td>Tuesday</td><td>07:00 PM</td><td></td><td></td><td>Forget to Punch</td></tr>
+          <tr><td>19 Jul 2025</td><td>Saturday</td><td>01:00 AM</td><td>10:00 PM</td><td></td><td>IT head duty</td></tr>
+          <tr><td>29 Jul 2025</td><td>Tuesday</td><td>06:00 AM</td><td></td><td></td><td>Out of Parking</td></tr>
+          <tr><td>25 Aug 2025</td><td>Monday</td><td>06:00 AM</td><td></td><td></td><td>Out of Parking</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">Total number of days (Manual Attendance):&nbsp; 19</div>
+  </div>
+</body>
+</html>

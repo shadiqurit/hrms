@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Human Resource – Leave Summary</title>
+<style>
+    /* --- Page + Typography --- */
+    :root {
+      --border: #1f1f1f;
+      --muted: #444;
+      --accent: #0b4a9e;
+      --bg: #ffffff;
+      --title: #000;
+    }o
+    html,
+    *{box-sizing:border-box}
+    body { font-family: Arial, Helvetica, sans-serif; 
+        color:#111; margin:0; padding:24px; }
+
+    .page {
+      width: 940px; /* close to A4 @ ~96dpi */
+      margin: 0 auto;
+            
+      }
+      /* Header */
+    .report-header {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      align-items: center;
+      column-gap: 2px;
+      padding: 2px  0 3px 0;
+      margin-bottom: 5px;
+      border-bottom: 2px solid var(--title);
+    }
+    .logo {
+      width: 60px; height: 60px; object-fit: contain;
+      
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .title h1 {
+      font-size: 22px;
+      margin: 2px; font-weight: 700;
+      
+    }
+    .title .subtitle {
+      font-size: 15px;     
+      font-weight: 600;
+    }
+
+    .pad { padding: 16px 18px; }
+
+    /* --- Header --- */
+   .meta { display:flex; justify-content:space-between; margin-top:2px; 
+        font-size: 12px; }
+    .meta strong { font-weight:700; }
+
+    .ftdt{font-size: 13px;}
+
+    /* --- Employee Block --- */
+    .info { display:grid; grid-template-columns: 1fr 1fr;
+         gap: 6px 18px; font-size: 13px; border:1px solid var(--border);
+           padding:12px 14px; border-bottom:none;
+         } 
+    .info div { display:flex; gap:6px; }
+    .label { min-width: 130px; color:#000; font-weight:700; }
+
+    /* --- Table --- */
+    table { width: 100%; border-collapse: collapse; }
+    
+    thead th { 
+        border:1px solid black;  
+        text-align:center; }
+    tbody td { border:1px solid var(--border); padding:6px 6px; font-size:13px; }
+
+    
+/* Column headers */
+  thead .colhead{
+    background:#f1f5f9;
+    color:var(--head);
+    font-weight:700;
+  }
+  thead .mini{
+    text-align:center;
+    padding:0;
+  }
+  thead .mini span{ display:block; }
+  thead .mini .abbr{
+    padding:6px 6px 2px;
+    letter-spacing:.02em;
+  }
+  thead .mini .sub{
+    padding:2px 6px 6px;
+    font-size:12px;   
+   
+  }
+    .ull{margin-bottom: 15px; }
+
+    .footer { 
+      margin-top: 12px; padding: 10px 50px; 
+     }
+      
+
+    /* --- Print styles --- */
+    @media print {
+      html, body { background:#fff; }
+      body { padding:0; }
+      .page { width:auto; margin:0; border:0; box-shadow:none; }
+      .logo { border-color:#000; }
+      thead th { background:#ddd !important; 
+        -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    }
+  </style>
+</head>
+<body>
+    <div class="page">
+
+    <div class="report-header">
+      <!-- Replace src with your actual logo path -->
+      <img class="logo" src="logo.png" alt="IBN SINA Logo" />
+      <div class="title">
+        <h1 class="ull"> The IBN SINA Pharmaceutical Industry PLC</h1>
+        <div class="subtitle">Employee Wise Manual Attendance</div>
+      </div>
+    </div>
+  <section class="report" aria-label="Human Resource Leave Summary">
+    <table role="table">
+      <colgroup>
+        <col class="code"><col class="name"><col class="desig">
+        <col class="days"><col class="days"><col class="days">
+        <col class="days"><col class="days">
+      </colgroup>
+        <div class="info">
+        <div><span class="label"> Department: </span> <span>Sales</span></div>
+    </div>
+     
+      <thead>        
+        <tr class="colhead">
+          <th>Employee<br>code</th>
+          <th>Employee Name</th>
+          <th>Designation</th>
+          <th class="mini"><span class="abbr">SL</span><span class="sub">Days</span></th>
+          <th class="mini"><span class="abbr">CL</span><span class="sub">Days</span></th>
+          <th class="mini"><span class="abbr">EL</span><span class="sub">Days</span></th>
+          <th class="mini"><span class="abbr">Total</span><span class="sub">Leave</span></th>
+          <th class="mini"><span class="abbr">EL</span><span class="sub">Encash</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>FPI-000792</td>
+          <td>MD. SAIFUL ISLAM</td>
+          <td>ASSISTANT EXECUTIVE</td>
+          <td class="num">0</td><td class="num">2</td><td class="num">0</td><td class="num">2</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-000814</td>
+          <td>MAHMUD NUR SOBUZ</td>
+          <td>ASSISTANT GENERAL MANAGER</td>
+          <td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-000822</td>
+          <td>NAZMUL HAK</td>
+          <td>ASSISTANT MANAGER</td>
+          <td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-004929</td>
+          <td>MD. PARVAZ ALI</td>
+          <td>ASSISTANT MANAGER</td>
+          <td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-006231</td>
+          <td>AFROZA AKTER</td>
+          <td>SENIOR OFFICER</td>
+          <td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-007036</td>
+          <td>SHAMSUL ARAFIN</td>
+          <td>EXECUTIVE</td>
+          <td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-007478</td>
+          <td>MD. ABDUL MANNAN</td>
+          <td>SENIOR EXECUTIVE</td>
+          <td class="num">0</td><td class="num">2</td><td class="num">0</td><td class="num">2</td><td class="num">0</td>
+        </tr>
+        <tr>
+          <td>FPI-008608</td>
+          <td>SUMON MIAH</td>
+          <td>EXECUTIVE</td>
+          <td class="num">0</td><td class="num">2</td><td class="num">0</td><td class="num">2</td><td class="num">0</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  </div>
+</body>
+</html>

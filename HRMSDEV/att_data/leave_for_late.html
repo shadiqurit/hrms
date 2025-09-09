@@ -13,48 +13,43 @@
       --accent: #0b4a9e;
       --bg: #ffffff;
       --title: #000;
-    }o
-    html,
-    *{box-sizing:border-box}
-    body { font-family: Arial, Helvetica, sans-serif; 
-        color:#111; margin:0; padding:24px; }
+    }
 
     .page {
-      width: 940px; /* close to A4 @ ~96dpi */
-      margin: 0 auto;
+       width: 190mm;  /* close to A4 @ ~96dpi */
+       margin: 0 auto;
             
       }
       /* Header */
-    .report-header {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      align-items: center;
-      text-align: center;
-      column-gap: 2px;
-      padding: 2px 0 10px 0;
-      border-bottom: 2px solid var(--rule);
-    }
-    .logo {
-      width: 64px; height: 64px; object-fit: contain;
-      margin-left: 125px;     
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers the text container */
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--border);  
+}
 
-    }
-    .title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .title h1 {
-      font-size: 22px;
-      margin: 0; font-weight: 700;
-      
-    }
-    .title .subtitle {
-      font-size: 18px;     
-      font-weight: 600;
-    }
+.logo {
+  width: 64px; height: 64px; 
+ 
+}
 
-    .pad { padding: 5px 18px; }
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 22px;
+  margin: 2px;
+  font-weight: 700;
+}
+
+.title .subtitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+ .pad { padding: 5px 10px; }
 
     /* --- Header --- */
    .meta { display:flex; justify-content:space-between; margin-top:1px; 
@@ -77,15 +72,21 @@
     thead th { 
         border:1px solid black;  
         text-align:center; }
-    tbody td { border:1px solid var(--border); padding:6px 6px; font-size:13px; }
+    tbody td { 
+      border:1px solid var(--border); padding:6px 6px; font-size:10px; }
 
     /* Column sizing close to the screenshot */
-    colgroup col:nth-child(1){ width: 16%; }
-    colgroup col:nth-child(2){ width: 13%; }
-    colgroup col:nth-child(3){ width: 14%; }
-    colgroup col:nth-child(4){ width: 14%; }
-    colgroup col:nth-child(5){ width: 11%; }
-    colgroup col:nth-child(6){ width: 32%; }
+    col.empcode { width: 80px; }
+    col.name { width: 180px; }
+    col.designation { width: 140px; }
+    col.department { width: 140px; }
+    col.yearmonth { width: 80px; }
+    col.leavetype { width: 80px; }
+    col.days { width: 40px; text-align: center; }
+    .table-wrap { overflow-x: auto; }
+
+      
+
 
     .ull{margin-bottom: 15px; }
 
@@ -94,6 +95,13 @@
         margin-bottom: 5px;
       
      }
+.thd{
+  font-size: 12px;
+}
+.tbd{
+  font-size: 5px;
+}
+     
 
     .footer { 
       margin-top: 12px; padding: 10px 50px; 
@@ -142,7 +150,7 @@
       
     
 
-    <table aria-describedby="desc">
+    <table class="thd" aria-describedby="desc">
       <colgroup>
         <col class="empcode" />
         <col class="name" />
@@ -163,7 +171,7 @@
           <th scope="col">Days</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="tbd">
         <!-- Sample rows faithfully mimicking the screenshot layout -->
         <tr>
           <td>IPI-000805</td>

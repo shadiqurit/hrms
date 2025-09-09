@@ -24,39 +24,42 @@
             
       }
       /* Header */
-     .report-header {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      align-items: center;
-      text-align: center;
-      column-gap: 2px;
-      padding: 2px 0 10px 0;
-      border-bottom: 2px solid var(--rule);
-    }
-    
-    .logo {
-      width: 64px; height: 64px; object-fit: contain;
-      margin-left: 125px;  
-    }
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers the text container */
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 10px;
+}
 
-    .title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .title h1 {
-      font-size: 22px;
-      margin: 0; font-weight: 700;
-      
-    }
-    .title .subtitle {
-      font-size: 15px;     
-      font-weight: 600;
-    }
+.logo {
+  width: 64px; height: 64px; 
+ 
+}
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 22px;
+  margin: 2px;
+  font-weight: 700;
+}
+
+.title .subtitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
 
     .pad { padding: 16px 18px; }
 
     /* --- Header --- */
+
+
    .meta { display:flex; justify-content:space-between; margin-top:2px; 
         font-size: 12px; }
     .meta strong { font-weight:700; }

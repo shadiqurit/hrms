@@ -12,46 +12,43 @@
       --accent: #0b4a9e;
       --bg: #ffffff;
       --title: #000;
-    }o
-    html,
-    *{box-sizing:border-box}
-    body { font-family: Arial, Helvetica, sans-serif; 
-        color:#111; margin:0; padding:24px; }
-
+    }
     .page {
       width: 940px; /* close to A4 @ ~96dpi */
-      margin: 0 auto;
-            
-      }
-      /* Header */
-     .report-header {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      align-items: center;
-      text-align: center;
-      column-gap: 2px;
-      padding: 2px 0 10px 0;
-      border-bottom: 2px solid var(--rule);
-    }
-    .logo {
-      width: 64px; height: 64px; object-fit: contain;
-      margin-left: 125px;     
+      margin: 0 auto;           
+      }      
 
-    }
-    .title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .title h1 {
-      font-size: 22px;
-      margin: 2px; font-weight: 700;
-      
-    }
-    .title .subtitle {
-      font-size: 15px;     
-      font-weight: 600;
-    }
+      /* Header */
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers the text container */
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 64px; height: 64px;  object-fit: contain;
+  margin-right: 12px; 
+}
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 22px;
+  margin: 2px;
+  font-weight: 700;
+}
+
+.title .subtitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
 
     .pad { padding: 16px 18px; }
 

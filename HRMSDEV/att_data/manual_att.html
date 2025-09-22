@@ -5,25 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Employee Wise Manual Attendance</title>
   <style>
-    /* --- Page + Typography --- */
-    :root {
+      :root {
       --border: #1f1f1f;
       --muted: #444;
       --accent: #0b4a9e;
       --bg: #ffffff;
       --title: #000;
-    }o
-    html,
-    *{box-sizing:border-box}
-    body { font-family: Arial, Helvetica, sans-serif; 
-        color:#111; margin:0; padding:24px; }
-
+    } 
     .page {
       width: 940px; /* close to A4 @ ~96dpi */
       margin: 0 auto;
             
       }
-      /* Header */
 .report-header {
   display: flex;
   align-items: center;
@@ -33,72 +26,46 @@
   border-bottom: 2px solid var(--border);
   margin-bottom: 10px;
 }
-
 .logo {
-  width: 64px; height: 64px; 
- 
+  width: 64px; height: 64px;  
 }
-
 .title {
   text-align: center;
 }
-
 .title h1 {
   font-size: 22px;
   margin: 2px;
   font-weight: 700;
 }
-
 .title .subtitle {
   font-size: 15px;
   font-weight: 600;
 }
-
-
-    .pad { padding: 16px 18px; }
-
-    /* --- Header --- */
-
-
-   .meta { display:flex; justify-content:space-between; margin-top:2px; 
+.pad { padding: 16px 18px; }
+.meta { display:flex; justify-content:space-between; margin-top:2px; 
         font-size: 12px; }
-    .meta strong { font-weight:700; }
-
-    .ftdt{font-size: 13px;}
-
-    /* --- Employee Block --- */
-    .info { display:grid; grid-template-columns: 1fr 1fr;
-         gap: 6px 18px; font-size: 13px; border:1px solid var(--border);
-           padding:12px 14px; border-bottom:none;
-         } 
-    .info div { display:flex; gap:6px; }
-    .label { min-width: 130px; color:#000; font-weight:700; }
-
-    /* --- Table --- */
-    table { width: 100%; border-collapse: collapse; }
+.meta strong { font-weight:700; }
+.ftdt{font-size: 13px;}
+.info { display:grid; grid-template-columns: 1fr 1fr;
+        gap: 6px 18px; font-size: 13px; border:1px solid var(--border);
+        padding:12px 14px; border-bottom:none;} 
+.info div { display:flex; gap:6px; }
+.label { min-width: 130px; color:#000; font-weight:700; }
+table { width: 100%; border-collapse: collapse; }
     
-    thead th { 
+thead th { 
         border:1px solid black;  
         text-align:center; }
-    tbody td { border:1px solid var(--border); padding:6px 6px; font-size:13px; }
-
-    /* Column sizing close to the screenshot */
-    colgroup col:nth-child(1){ width: 16%; }
-    colgroup col:nth-child(2){ width: 13%; }
-    colgroup col:nth-child(3){ width: 14%; }
-    colgroup col:nth-child(4){ width: 14%; }
-    colgroup col:nth-child(5){ width: 11%; }
-    colgroup col:nth-child(6){ width: 32%; }
-
-    .ull{margin-bottom: 15px; }
-
-    .footer { 
-      margin-top: 12px; padding: 10px 50px; 
-     }
-      
-
-    /* --- Print styles --- */
-    @media print {
+tbody td { border:1px solid var(--border); padding:6px 6px; font-size:13px; }
+colgroup col:nth-child(1){ width: 16%; }
+colgroup col:nth-child(2){ width: 13%; }
+colgroup col:nth-child(3){ width: 14%; }
+colgroup col:nth-child(4){ width: 14%; }
+colgroup col:nth-child(5){ width: 11%; }
+colgroup col:nth-child(6){ width: 32%; }
+.ull{margin-bottom: 15px; }
+.footer {margin-top: 12px; padding: 10px 50px;}
+@media print {
       html, body { background:#fff; }
       body { padding:0; }
       .page { width:auto; margin:0; border:0; box-shadow:none; }
@@ -106,7 +73,7 @@
       thead th { background:#ddd !important; 
         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
     }
-  </style>
+</style>
 </head>
 <body>
 

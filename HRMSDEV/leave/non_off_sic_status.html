@@ -1,0 +1,166 @@
+sys.htp.p('<div id="divToPrint">
+<style>
+      :root {
+      --border: #1f1f1f;
+      --muted: #444;
+      --accent: #0b4a9e;
+      --bg: #ffffff;
+      --title: #000;
+    } 
+    .page {
+      width: 940px; /* close to A4 @ ~96dpi */
+      margin: 0 auto;
+            
+      }
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers the text container */
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 64px; height: 64px;  
+}
+.title {
+  text-align: center;
+}
+.title h1 {
+  font-size: 20px;
+  margin: 2px;
+  font-weight: 700;
+}
+.title .subtitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+.pad { padding: 5px 5px; }
+.meta { display:flex; justify-content:space-between; margin-top:2px; 
+        font-size: 11px; }
+.meta strong { font-weight:700; }
+.ftdt{font-size: 12px;}
+.info { display:grid; grid-template-columns: 1fr 1fr;
+        gap: 6px 18px; font-size: 13px;      
+        padding:12px 14px;} 
+.info div { display:flex; gap:6px; }
+.label { min-width: 130px; color:#000; font-weight:700; }
+
+    
+
+.ull{margin-bottom: 15px; }
+.footer {margin-top: 12px; padding: 10px 50px;}
+table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 10px 10px;
+      text-align: center;
+    }
+    th {
+      background: #f2f2f2;
+    }
+    .half-table {
+      width: 48%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .small-table th, .small-table td {
+      padding: 1px 1px;
+    }
+    .centered{text-align: center;}
+ @media print {
+      html, body { background:#fff; }
+      body { padding:0; }
+      .page { width:auto; margin:0; border:0; box-shadow:none; }
+      .logo { border-color:#000; }      
+      thead th { background:#ddd !important; 
+        -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+        th td {font-size: 10px;}
+      .half-table {      
+      font-size: 11px;
+      
+    }
+    } 
+</style>
+<div class="page">
+<div class="report-header">
+      <!-- Replace src with your actual logo path -->
+      <img class="logo" src="logo.png" alt="IBN SINA Logo" />
+      <div class="title">
+        <h1 class="ull"> The IBN SINA Pharmaceutical Industry PLC</h1>
+        <div class="subtitle">Sick Leave Status for Non-Officer	</div>
+      </div>
+    </div>
+
+    <div class="header pad">      
+      <div class="meta">
+        <div class="ftdt"><strong>As on Date</strong> : 01-JAN-25</div>
+        <div><strong>Print time</strong> : 08-SEP-25&nbsp;&nbsp;11:54 AM</div>
+      </div>
+    </div>
+<div class="pad"><strong>Department : </strong>Quality Controll</div>
+    <table>
+        <colgroup>
+          <col class="empcode"><col class="empcode-old"><col class="name">
+          <col class="desig"><col class="status"><col class="num"><col class="num"><col class="num">
+        </colgroup>
+
+        
+
+        <thead>
+          <tr>
+            <th rowspan="2">Empcode</th>
+            <th rowspan="2">Empcode<br>Old</th>
+            <th rowspan="2">Employee Name</th>
+            <th rowspan="2">Designation</th>
+            <th rowspan="2">Status</th>
+            <th class="center" colspan="3">Sick Leave</th>
+          </tr>
+          <tr>
+            <th>Acquired</th>
+            <th>Taken</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+
+        <tbody>         
+         
+          <tr>
+            <td>PI-008209</td><td>QCL-0269</td><td>MD. RIFATUL ISLAM</td><td>Q.C. HELPER</td><td></td><td class="right">14</td><td class="right">0</td><td class="right">14</td>
+          </tr>
+          <tr>
+            <td>PI-008346</td><td>QCL-0273</td><td>MILON MIAN BABU</td><td>Q.C. HELPER</td><td></td><td class="right">14</td><td class="right">0</td><td class="right">14</td>
+          </tr>
+                  
+          <tr>
+            <td>PI-009735</td><td>QCL-0303</td><td>MD. JAMJUL CHOWDHURY</td><td>Jr. QC. Helper</td><td></td><td class="right">14</td><td class="right">2</td><td class="right">12</td>
+          </tr>
+          <tr>
+            <td>PI-009737</td><td>QCL-0304</td><td>MD. HASAN MAHMUD</td><td>Jr. QC. Helper</td><td></td><td class="right">14</td><td class="right">2</td><td class="right">12</td>
+          </tr>
+          <tr>
+            <td>PI-009739</td><td>QCL-0305</td><td>MD. SAKIB HOSSAIN</td><td>Jr. QC. Helper</td><td></td><td class="right">14</td><td class="right">0</td><td class="right">14</td>
+          </tr>
+          <tr>
+            <td>PI-009741</td><td>QCL-0306</td><td>MD. WOKIL ISLAM</td><td>Jr. QC. Helper</td><td></td><td class="right">14</td><td class="right">11</td><td class="right">3</td>
+          </tr>
+          <tr>
+            <td>PI-009787</td><td>QCL-0312</td><td>MD. JAKIR HOSSAIN</td><td>Jr. QC. Helper</td><td></td><td class="right">14</td><td class="right">8</td><td class="right">6</td>
+          </tr>
+          <tr>
+            <td>PI-009901</td><td>QCL-0315</td><td>MD. RASHIDUL ISLAM</td><td>Jr. QC. Helper</td><td></td><td class="right">11</td><td class="right">3</td><td class="right">8</td>
+          </tr>
+          <tr>
+            <td>PI-010050</td><td>QCL-0318</td><td>MOHAMMAD ARIFUL ISLAM</td><td>A.B. ASSTT.</td><td></td><td class="right">8</td><td class="right">2</td><td class="right">6</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      
+</div>
+');

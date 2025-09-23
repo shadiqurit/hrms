@@ -1,0 +1,209 @@
+sys.htp.p('<div id="divToPrint">
+<style>
+      :root {
+      --border: #1f1f1f;
+      --muted: #444;
+      --accent: #0b4a9e;
+      --bg: #ffffff;
+      --title: #000;
+    } 
+    .page {
+      width: 940px; /* close to A4 @ ~96dpi */
+      margin: 0 auto;
+            
+      }
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers the text container */
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 64px; height: 64px;  
+}
+.title {
+  text-align: center;
+}
+.title h1 {
+  font-size: 20px;
+  margin: 2px;
+  font-weight: 700;
+}
+.title .subtitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+.pad { padding: 5px 5px; }
+.meta { display:flex; justify-content:space-between; margin-top:2px; 
+        font-size: 11px; }
+.meta strong { font-weight:700; }
+.ftdt{font-size: 12px;}
+.info { display:grid; grid-template-columns: 1fr 1fr;
+        gap: 6px 18px; font-size: 13px;      
+        padding:12px 14px;} 
+.info div { display:flex; gap:6px; }
+.label { min-width: 130px; color:#000; font-weight:700; }
+
+    
+
+.ull{margin-bottom: 15px; }
+.footer {margin-top: 12px; padding: 10px 50px;}
+table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 10px 10px;
+      text-align: center;
+    }
+    th {
+      background: #f2f2f2;
+    }
+    .half-table {
+      width: 48%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .small-table th, .small-table td {
+      padding: 1px 1px;
+    }
+ @media print {
+      html, body { background:#fff; }
+      body { padding:0; }
+      .page { width:auto; margin:0; border:0; box-shadow:none; }
+      .logo { border-color:#000; }      
+      thead th { background:#ddd !important; 
+        -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+        th td {font-size: 10px;}
+      .half-table {      
+      font-size: 11px;
+      
+    }
+    } 
+</style>
+</head>
+<body>
+
+  <div class="page">
+<div class="report-header">
+      <!-- Replace src with your actual logo path -->
+      <img class="logo" src="logo.png" alt="IBN SINA Logo" />
+      <div class="title">
+        <h1 class="ull"> The IBN SINA Pharmaceutical Industry PLC</h1>
+        <div class="subtitle">Employee Wise Manual Attendance</div>
+      </div>
+    </div>
+
+    <div class="header pad">      
+      <div class="meta">
+        <div class="ftdt"><strong>Date</strong> : 01-JAN-25 to 08-SEP-25</div>
+        <div><strong>Print time</strong> : 08-SEP-25&nbsp;&nbsp;11:54 AM</div>
+      </div>
+    </div>
+
+    <!-- Employee details -->
+    <div class="info">
+      <div><span class="label">Emp Code:</span> <span>IPI-001024</span></div>
+      <div><span class="label">Employment Status:</span> <span>Confirmed</span></div>
+      <div><span class="label">Employee Name:</span> <span>MD. AKTARUL ISLAM BADAL</span></div>
+      <div><span class="label">Emp OLD:</span> <span>ADH-001</span></div>
+      <div><span class="label">Designation:</span> <span>SR. DRIVER</span></div>
+      <div><span class="label">Department:</span> <span>Sales</span></div>
+    </div>
+
+    <!-- Attendance table -->
+    
+<!-- Leave Summary -->
+  <table class="half-table">
+    <tr>
+      <th>Leave Type</th>
+      <th>Acquired</th>
+      <th>Taken</th>
+      <th>Available</th>
+    </tr>
+    <tr>
+      <td>Earned Leave</td>
+      <td>172</td>
+      <td>4</td>
+      <td>168</td>
+    </tr>
+    <tr>
+      <td>Casual Leave</td>
+      <td>10</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>Sick Leave</td>
+      <td>14</td>
+      <td>0</td>
+      <td>14</td>
+    </tr>
+  </table>
+
+  <!-- EL Settlement -->
+   
+  <table class="half-table" style="width:200px;">
+     <tr>
+      <th colspan="2">EL Settlement</th>
+    </tr>
+    <tr>
+      <td>Date</td>
+      <td>Days</td>
+    </tr>
+  </table>
+
+  <!-- Leave Details & Late Attendance -->
+  <div>
+    <div class="half-table">
+      <h3>Leave Details</h3>
+      <table>
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Days</th>
+          <th>Leave Type</th>
+        </tr>
+        <tr><td>04-Aug-2025</td><td>04-Aug-2025</td><td>1</td><td>Casual</td></tr>
+        <tr><td>31-Jul-2025</td><td>31-Jul-2025</td><td>1</td><td>Casual</td></tr>
+        <tr><td>15-Apr-2025</td><td>15-Apr-2025</td><td>1</td><td>Casual</td></tr>
+        <tr><td>10-Dec-2024</td><td>11-Dec-2024</td><td>2</td><td>Casual</td></tr>
+        <tr><td>14-Oct-2024</td><td>15-Oct-2024</td><td>2</td><td>Casual</td></tr>
+        <tr><td>29-Jun-2024</td><td>30-Jun-2024</td><td>2</td><td>Casual</td></tr>
+        <tr><td>05-Jun-2024</td><td>06-Jun-2024</td><td>2</td><td>Casual</td></tr>
+        <tr><td>08-May-2024</td><td>08-May-2024</td><td>1</td><td>Casual</td></tr>
+        <tr><td>13-Dec-2023</td><td>13-Dec-2023</td><td>1</td><td>Casual</td></tr>
+        <tr><td>28-Oct-2023</td><td>28-Oct-2023</td><td>1</td><td>Casual</td></tr>
+        <tr><td>26-Aug-2023</td><td>29-Aug-2023</td><td>4</td><td>Earned</td></tr>   
+      </table>
+    </div>
+
+    <div class="half-table">
+      <h3>Leave for Late Attendance</h3>
+      <table>
+
+        
+
+        <thead>          
+          <th>Month/year</th>
+          <th>Days</th>
+          <th>Leave Type</th>
+          
+        </thead>
+       
+        <tr>
+          <td>Jul, 2022</td>
+          <td>1</td>
+          <td>Casual</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+   
+  </div>
+   </div>');

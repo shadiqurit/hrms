@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Letter</title>
+    <style>
+        /* Basic styles for the page */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Simulating a paper page */
+        .page {
+            width: 8.5in;
+            min-height: 11in;
+            padding: 1in;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box; /* Ensures padding is included in width/height */
+        }
+
+        /* Header section */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header-logo {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .header-main {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .department {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Metadata grid (Ref, Date, Slogan) */
+        .meta-grid {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .meta-left {
+            text-align: left;
+        }
+        .meta-right {
+            text-align: right;
+        }
+
+        /* Recipient address block */
+        .recipient {
+            margin-top: 20px;
+        }
+        .recipient p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Subject line */
+        .subject {
+            font-weight: bold;
+            text-decoration: underline;
+            text-align: left;
+            margin: 30px 0 20px;
+            font-size: 1.1em;
+        }
+
+        /* Main letter content */
+        .body-content ol {
+            padding-left: 40px; /* Standard indentation for ordered list */
+        }
+        .body-content ol li {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        .salutation {
+            margin-bottom: 15px;
+        }
+        .closing-prayer {
+            margin-top: 20px;
+        }
+        
+        /* Signature block */
+        .signature {
+            margin-top: 50px;
+        }
+
+        /* CC list */
+        .cc-list {
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        .cc-list ol {
+            list-style-type: decimal-leading-zero;
+            padding-left: 30px;
+            margin-top: 5px;
+        }
+        .cc-list ol li {
+            margin-bottom: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #cccccc;
+            padding-top: 15px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #555;
+        }
+        .footer p {
+            margin: 2px 0;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                background: none;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                min-height: auto;
+                padding: 0;
+                page-break-after: always; /* Ensure each .page is a new print page */
+            }
+            .footer {
+                position: fixed;
+                bottom: 1in;
+                width: 8.5in; /* Match original width */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <header class="header">
+            <div class="header-logo">The IBN SINA</div>
+            <div class="header-main">Pharmaceutical Industry PLC</div>
+            <div class="department">Human Resource Department</div>
+        </header>
+
+        <div class="meta-grid">
+            <div class="meta-left">
+                <strong>Ref: IPI/HRD/Internal-02/2025/1889</strong>
+            </div>
+            <div class="meta-right">
+                <div><strong>Quality We Assure</strong></div>
+                <div>Date: 13 October 2025</div>
+            </div>
+        </div>
+
+        <div class="recipient">
+            <p>Mirja Ansarul Beeg,</p>
+            <p>STAFF No. # IPI-009990,</p>
+            <p>Medical Promotion Officer,</p>
+            <p>Territory: Barura-1, Area: Barura,</p>
+            <p>Zone Laksam, Region: Chandpur,</p>
+            <p>Group: A.</p>
+        </div>
+
+        <div class="subject">Subject: Transfer</div>
+
+        <div class="body-content">
+            <p class="salutation">Janab,<br>Assalamu Alaikum Wa Rahmatullah.</p>
+            
+            <ol>
+                <li>The Management of The IBN SINA Pharmaceutical Industry PLC has decided to transfer you from Barura-1 territory to Patgram territory within Hatibandha area of Kurigram zone of Rangpur region, keeping your designation, grade and salary unchanged;</li>
+                <li>This will come into effect immediately;</li>
+                <li>You are directed to complete your all necessary formalities, obtain your 'Release Order from Depot Manager, depot after handing over your charge to the designated employee, and join your new territory Patgram immediately;</li>
+                <li>You are advised to seek help from the respective group leader in need;</li>
+                <li>After joining your new workplace, you are advised to prepare two original copies of Joining Letter (countersigned by the Head of Sales) along with the Release Order and reach it to the Human Resource Department immediately.</li>
+            </ol>
+
+            <p class="closing-prayer">May Allah grant us all ability to perform our duties and responsibilities with excellence.<br>Ma'Assalam.</p>
+        </div>
+
+        <div class="signature">
+            <p>(Director Marketing)</p>
+        </div>
+
+        <div class="cc-list">
+            <strong>CC to:</strong>
+            <ol>
+                <li>Head of Sales,</li>
+                <li>Group Leader (A/B)</li>
+                <li>AM/RSM/DSM, Laksam zone,</li>
+                <li>AM/RSM/DSM, Kurigram zone,</li>
+                <li>Depot Manager, Cumilla depot,</li>
+                <li>Depot Manager, Rangpur depot,</li>
+                <li>Accounts deptt. (Pay Roll section),</li>
+                <li>Personal file,</li>
+                <li>Office copy.</li>
+            </ol>
+        </div>
+
+        <footer class="footer">
+            <p>Corporate Office: Tanin Center, 3 Asad Gate, Mirpur Road, Mohammadpur, Dhaka-1207</p>
+            <p>Telephone (PABX): (+88 02) 41022150-8, Factory: Shafipur, Kaliakoir, Gazipur, Bangladesh</p>
+            <p>www.ibnsinapharma.com</p>
+            <p><strong>ISO 9001:2015 Certified Company</strong></p>
+        </footer>
+    </div>
+
+    <div class="page" lang="bn">
+        <header class="header">
+            <div class="header-logo">The IBN SINA</div>
+            <div class="header-main">Pharmaceutical Industry PLC</div>
+            <div class="department">হিউম্যান রিসোর্স ডিপার্টমেন্ট</div>
+        </header>
+
+        <div class="meta-grid">
+            <div class="meta-left">
+                <strong>সূত্র নং: আইপিআই/এইচআরডি/অভ্য-০২/২০২৫/১৯২৪</strong>
+            </div>
+            <div class="meta-right">
+                <div><strong>Quality We Assurs</strong></div> <div>তারিখঃ ২০ অক্টোবর ২০২৫ খ্রি.</div>
+            </div>
+        </div>
+
+        <div class="recipient">
+            <p>জনাব জুনায়েত হক সরকার,</p>
+            <p>Staff No. # IPI-009911,</p>
+            <p>এক্সিকিউটিভ, ইঞ্জিনিয়ারিং বিভাগ,</p>
+            <p>দি ইবনে সিনা ফার্মাসিউটিক্যাল ইন্ডাস্ট্রি পিএলসি,</p>
+            <p>কারখানা, সফিপুর, কালিয়াকৈর, গাজীপুর।</p>
+        </div>
+
+        <div class="subject">বিষয়: বদলী।</div>
+
+        <div class="body-content">
+            <p class="salutation">জনাব,<br>আস্সালামু আলাইকুম ওয়া রাহমাতুল্লাহ।</p>
+            
+            <ol>
+                <li>দি ইবনে সিনা ফার্মাসিউটিক্যাল ইন্ডাস্ট্রি পিএলসি এর ব্যবস্থাপনা কর্তৃপক্ষ আপনার পদবী, গ্রেড, বেতন- ভাতা যথারীতি অপরিবর্তিত রেখে আপনাকে কোম্পানির শফিপুরস্থ কারখানার ইঞ্জিনিয়ারিং বিভাগ থেকে গোধুলিয়াস্থ আইপিআই প্ল্যান্ট (ইউনিট-২) এর ইঞ্জিনিয়ারিং বিভাগে বদলীর সিদ্ধান্ত গ্রহণ করেছেন:</li>
+                <li>ব্যবস্থাপনা কর্তৃপক্ষের এ সিদ্ধান্ত অবিলম্বে কার্যকর হিসেবে গণ্য হবে। আপনার নতুন কর্মস্থল হয়ে আইপিআই প্ল্যান্ট (ইউনিট-২), গোধুলিয়া, মাওনা, গাজীপুর;</li>
+                <li>আপনাকে এ উদ্দেশ্যে বর্তমান কর্মস্থল সংশ্লিষ্ট যাবতীয় কাজকর্ম গুছিয়ে, হিসাব নিকাশ ও চার্জ বুঝিয়ে দিয়ে অতি দ্রুত আইপিআই প্ল্যান্ট (ইউনিট-২) এর ইঞ্জিনিয়ারিং বিভাগে যোগদান করার নির্দেশ দেয়া হলো:</li>
+                <li>Charge hand over Charge take over সংক্রান্ত এবং নতুন কর্মস্থলে যোগদানের বিষয়ে আপনি সিনি, জিএম ও হেড অব প্ল্যান্ট (ইউনিট-২) এর পরামর্শ গ্রহণ করবেন;</li>
+                <li>নতুন কর্মস্থলে যোগদানের পর আপনি যোগদানপত্রের ২টি মূল কপি সিনি জিএম ও হেড অব প্ল্যান্ট (ইউনিট-২) এর প্রতিস্বাক্ষর সহ হিউম্যান রিসোর্স ডিপার্টমেন্টে অতি দ্রুত প্রেরণ করবেন।</li>
+            </ol>
+
+            <p class="closing-prayer">সর্বশক্তিমান আল্লাহ তা'আলা আমাদেরকে স্ব স্ব দায়িত্ব ও কর্তব্য যথাযথভাবে পালন করার তাওফিক দান করুন।<br>মা'আস্সালাম</p>
+        </div>
+
+        <div class="signature">
+            <p>(প্রফেসর ড. এ কে এম সদরুল ইসলাম)</p>
+            <p>ব্যবস্থাপনা পরিচালক।</p>
+        </div>
+
+        <div class="cc-list">
+            <strong>অনুলিপি:</strong>
+            <ol>
+                <li>ইডি এন্ড হেড অব প্ল্যান্ট,</li>
+                <li>সিনি. জিএম ও হেড অব প্ল্যান্ট (ইউনিট-২),</li>
+                <li>জিএম ও হেড অব ইঞ্জিনিয়ারিং,</li>
+                <li>এজিএম, এডমিন (প্ল্যান্ট),</li>
+                <li>সিনি, অফিসার, এইচআরডি (প্ল্যান্ট),</li>
+                <li>হিসাব বিভাগ (Pay-Roll সেকশন).</li>
+                <li>ব্যক্তিগত নথি,</li>
+                <li>অফিস কপি।</li>
+            </ol>
+        </div>
+
+        <footer class="footer">
+            <p>Corporate Office: Tanin Center, 3 Asad Gate, Mirpür Road, Mohammadpur, Dhaka-1207</p>
+            <p>Telephone (PABX): (+8802) 41022150-8, Factory: Shafipur, Kaliakoir, Gazipur, Bangladesh</p>
+            <p>www.ibnsinapharma.com</p>
+            <p><strong>ISO 9001:2015 Certified Company</strong></p>
+        </footer>
+    </div>
+
+</body>
+</html>

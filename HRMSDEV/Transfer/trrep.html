@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Transfer Letter</title>
+    <style>
+        /* Basic Page Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The "Paper" Container */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: #ffffff;
+            border: 1px solid #dcdcdc;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 50px 60px;
+            margin: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Letter Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            /* Uncomment to use an image logo */
+            /* content: url('your-logo-url.png'); */
+            /* max-width: 150px; */
+        }
+
+        .header .company-address {
+            text-align: right;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Letter Content */
+        .date {
+            text-align: right;
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .employee-info {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .subject {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;
+            margin: 40px 0;
+        }
+
+        .body-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Highlighted Details Box */
+        .details-box {
+            background: #f9f9f9;
+            border: 1px solid #eaeaea;
+            border-left: 4px solid #007bff;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .details-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .details-box li {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .details-box li strong {
+            display: inline-block;
+            min-width: 150px;
+            color: #333;
+        }
+
+        /* Signature */
+        .signature-block {
+            margin-top: 60px;
+        }
+
+        .signature-block p {
+            margin-bottom: 5px;
+        }
+
+        .signature-block .signature-line {
+            border-bottom: 1px solid #000;
+            width: 250px;
+            height: 40px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                Your Company Inc.
+                </div>
+            <div class="company-address">
+                123 Corporate Way<br>
+                Suite 500, Metrotown, 12345<br>
+                (123) 456-7890<br>
+                company.com
+            </div>
+        </div>
+
+        <div class="date">
+            November 11, 2025
+        </div>
+
+        <div class="employee-info">
+            <strong>[Employee's Full Name]</strong><br>
+            [Employee ID: 12345]<br>
+            [Current Position]
+        </div>
+
+        <h1 class="subject">Subject: Notice of Transfer</h1>
+
+        <div class="body-content">
+            <p>Dear [Employee Name],</p>
+
+            <p>This letter is to formally notify you of your transfer from your current position as <strong>[Current Position Title]</strong> in the <strong>[Current Department]</strong> to the position of <strong>[New Position Title]</strong> in the <strong>[New Department]</strong>.</p>
+            
+            <p>This transfer is effective as of <strong>[Effective Date, e.g., December 1, 2025]</strong>.</p>
+
+            <div class="details-box">
+                <ul>
+                    <li><strong>New Position:</strong> [New Position Title]</li>
+                    <li><strong>New Department:</strong> [New Department]</li>
+                    <li><strong>New Location:</strong> [New Office/Branch/Address]</li>
+                    <li><strong>Reporting To:</strong> [New Manager's Name], [New Manager's Title]</li>
+                </ul>
+            </div>
+
+            <p>Your compensation and benefits package will [remain unchanged / be adjusted as follows: ...]. We are excited for you to bring your skills to this new role and are confident you will be a valuable addition to the new team.</p>
+
+            <p>If you have any questions regarding this transfer, please contact [HR Contact Name] in the Human Resources department.</p>
+
+            <div class="signature-block">
+                <p>Sincerely,</p>
+                
+                <div class="signature-line">
+                    </div>
+                
+                <p><strong>[Your Name]</strong><br>
+                   [Your Title, e.g., HR Manager]</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

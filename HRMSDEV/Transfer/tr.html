@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Transfer Report — {{ReportID}}</title>
+  <style>
+    :root{
+      --font-body: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --c-bg: #ffffff;
+      --c-fg: #111418;
+      --c-muted: #5f6b7a;
+      --c-border: #e4e7eb;
+      --c-accent: #3a7afe;
+      --c-accent-weak: #e8f0ff;
+      --c-chip: #eef2ff;
+      --c-danger: #b00020;
+      --c-success: #146c43;
+      --c-warning: #b34700;
+    }
+    [data-theme="dark"]{
+      --c-bg: #0f1115;
+      --c-fg: #e6e7eb;
+      --c-muted: #9aa4b2;
+      --c-border: #1f2430;
+      --c-accent: #6aa3ff;
+      --c-accent-weak: #12264d;
+      --c-chip: #1a2240;
+      --c-danger: #ff6b6b;
+      --c-success: #4ade80;
+      --c-warning: #f59e0b;
+    }
+
+    /* Base */
+    html, body { height: 100%; background: var(--c-bg); color: var(--c-fg); }
+    body {
+      margin: 0;
+      font: 14px/1.5 var(--font-body);
+    }
+    .container {
+      max-width: 980px;
+      margin: 24px auto;
+      padding: 24px;
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: 12px;
+    }
+    h1, h2, h3 { margin: 0 0 .5rem; line-height: 1.2; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.1rem; color: var(--c-muted); font-weight: 600; letter-spacing: .02em; text-transform: uppercase; }
+    p { margin: .25rem 0; }
+    .muted { color: var(--c-muted); }
+    .mono { font-family: var(--font-mono); }
+
+    /* Header */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .brand .logo {
+      width: 48px; height: 48px; border: 1px dashed var(--c-border); border-radius: 8px;
+      display: grid; place-items: center; font-weight: 700; font-size: 12px; color: var(--c-muted);
+    }
+    .doc-meta {
+      text-align: right;
+    }
+    .chip {
+      display: inline-block;
+      padding: .25rem .6rem;
+      border-radius: 999px;
+      background: var(--c-chip);
+      color: var(--c-fg);
+      font-weight: 600;
+      font-size: .85rem;
+      border: 1px solid var(--c-border);
+    }
+    .chip.success { background: #ecfdf5; color: var(--c-success); border-color: #daf5e9; }
+    .chip.warning { background: #fff7ed; color: var(--c-warning); border-color: #fde6cc; }
+    .chip.danger  { background: #fef2f2; color: var(--c-danger); border-color: #ffdede; }
+    .idline { margin-top: 6px; font-feature-settings: "tnum"; }
+
+    /* Two-column detail blocks */
+    .grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .card {
+      border: 1px solid var(--c-border); border-radius: 10px; padding: 12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.02));
+    }
+    dl.kv { display: grid; grid-template-columns: 140px 1fr; gap: 6px 10px; margin: 0; }
+    dl.kv dt { color: var(--c-muted); }
+    dl.kv dd { margin: 0; }
+
+    /* Tables */
+    table {
+      width: 100%; border-collapse: collapse; border: 1px solid var(--c-border);
+      border-radius: 10px; overflow: hidden; font-size: 13px;
+    }
+    thead th {
+      background: var(--c-accent-weak); color: var(--c-fg); text-align: left;
+      font-weight: 600; padding: 8px; border-bottom: 1px solid var(--c-border);
+    }
+    tbody td {
+      padding: 8px; border-bottom: 1px solid var(--c-border); vertical-align: top;
+    }
+    tfoot td {
+      padding: 8px; font-weight: 700; background: #fafafa; border-top: 1px solid var(--c-border);
+    }
+    tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+
+    .right { text-align: right; }
+    .center { text-align: center; }
+
+    /* Sections & utilities */
+    section { margin-top: 20px; }
+    .actions {
+      display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px;
+    }
+    button.btn {
+      border: 1px solid var(--c-border); background: var(--c-bg); padding: 8px 12px; border-radius: 8px;
+      cursor: pointer; font-weight: 600;
+    }
+    button.btn.primary { background: var(--c-accent); color: white; border-color: var(--c-accent); }
+    .note {
+      padding: 10px 12px; border: 1px dashed var(--c-border); border-radius: 8px; color: var(--c-muted);
+      background: rgba(0,0,0,0.02);
+    }
+
+    /* Signatures */
+    .signatures {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+    .sig {
+      border: 1px solid var(--c-border); border-radius: 10px; padding: 12px; height: 150px; display: grid;
+      grid-template-rows: 1fr auto; gap: 12px;
+    }
+    .sig .line {
+      border-top: 1px dashed var(--c-border); padding-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      font-size: 12px; color: var(--c-muted);
+    }
+
+    /* Footer & page numbers (print) */
+    .footer {
+      margin-top: 18px; color: var(--c-muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--c-border); padding-top: 10px;
+    }
+    .page-numbers { font-feature-settings:"tnum"; }
+    @media print {
+      .container { border: none; border-radius: 0; margin: 0; padding: 0; }
+      .actions { display: none !important; }
+      body { background: #fff; }
+      section { page-break-inside: avoid; }
+      .page-break { page-break-before: always; }
+      /* Paged media counters; support varies by browser. */
+      @page { margin: 16mm; }
+      .footer .page-numbers::after {
+        content: "Page " counter(page) " of " counter(pages);
+      }
+      /* Optional watermark when status is DRAFT */
+      body.status--draft::before{
+        content: "DRAFT";
+        position: fixed; top: 40%; left: 10%;
+        font-size: 120px; font-weight: 800; color: rgba(200,0,0,0.08); transform: rotate(-20deg);
+        pointer-events: none; z-index: 0;
+      }
+    }
+  </style>
+</head>
+<body class="status--{{StatusLowercase}}"
+      data-report-id="{{ReportID}}"
+      data-currency="{{CurrencyCode}}">
+
+  <div class="container" role="document" aria-label="Transfer Report">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo" aria-label="Company logo">LOGO</div>
+        <div>
+          <h1>Transfer Report</h1>
+          <div class="muted">Organization: <strong>{{CompanyName}}</strong></div>
+          <div class="muted">Prepared on: <time id="preparedOn" datetime=""></time></div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <div class="chip {{StatusClass}}" aria-label="Transfer status">{{Status}}</div>
+        <div class="idline mono">Report ID: <strong>{{ReportID}}</strong></div>
+        <div class="idline mono">Transfer Date: <strong><time datetime="{{TransferDateISO}}">{{TransferDate}}</time></strong></div>
+      </div>
+    </header>
+
+    <!-- PARTIES -->
+    <section class="grid-2" aria-label="Parties">
+      <div class="card" aria-label="From (Origin)">
+        <h2>From (Origin)</h2>
+        <dl class="kv">
+          <dt>Site / Dept.</dt><dd>{{FromSite}} — {{FromDepartment}}</dd>
+          <dt>Address</dt><dd>{{FromAddress}}</dd>
+          <dt>Contact</dt><dd>{{FromContactName}} ({{FromContactPhone}})</dd>
+        </dl>
+      </div>
+      <div class="card" aria-label="To (Destination)">
+        <h2>To (Destination)</h2>
+        <dl class="kv">
+          <dt>Site / Dept.</dt><dd>{{ToSite}} — {{ToDepartment}}</dd>
+          <dt>Address</dt><dd>{{ToAddress}}</dd>
+          <dt>Contact</dt><dd>{{ToContactName}} ({{ToContactPhone}})</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- TRANSFER DETAILS -->
+    <section class="card" aria-label="Transfer Details">
+      <h2>Transfer Details</h2>
+      <div class="grid-2">
+        <dl class="kv">
+          <dt>Type</dt><dd>{{TransferType}} <!-- e.g., Internal, Inter-branch, External, Custody --></dd>
+          <dt>Priority</dt><dd>{{Priority}}</dd>
+          <dt>Requested By</dt><dd>{{RequestedBy}} ({{RequestingDept}})</dd>
+          <dt>Reason</dt><dd>{{Reason}}</dd>
+          <dt>Reference</dt><dd>Req# {{RequestID}} • DO# {{DispatchOrder}} • PO# {{PO}}</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Carrier / Mode</dt><dd>{{Carrier}} — {{Mode}}</dd>
+          <dt>ETD</dt><dd><time datetime="{{ETDISO}}">{{ETD}}</time></dd>
+          <dt>ETA</dt><dd><time datetime="{{ETAISO}}">{{ETA}}</time></dd>
+          <dt>Received On</dt><dd><time datetime="{{ReceivedISO}}">{{ReceivedOn}}</time></dd>
+          <dt>Tracking</dt><dd class="mono">{{TrackingNo}}</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ITEMS -->
+    <section aria-label="Items">
+      <h2>Items</h2>
+      <table aria-describedby="itemsHelp">
+        <thead>
+          <tr>
+            <th class="center">#</th>
+            <th>Item Code</th>
+            <th>Description</th>
+            <th class="center">UOM</th>
+            <th>Batch / Lot</th>
+            <th>Serial No.</th>
+            <th class="right">Qty Sent</th>
+            <th class="right">Qty Received</th>
+            <th class="right">Unit Cost</th>
+            <th class="right">Amount</th>
+          </tr>
+        </thead>
+        <tbody id="itemsBody">
+          <!-- Example rows; duplicate or replace with your data binding -->
+          <tr data-qty-sent="10" data-qty-recv="10" data-unit-cost="12.50">
+            <td class="center">1</td>
+            <td class="mono">{{ItemCode1}}</td>
+            <td>{{ItemDesc1}}</td>
+            <td class="center">EA</td>
+            <td class="mono">B-045</td>
+            <td class="mono">SN-A1001</td>
+            <td class="right qty-sent">10</td>
+            <td class="right qty-recv">10</td>
+            <td class="right unit-cost">12.50</td>
+            <td class="right amount"></td>
+          </tr>
+          <tr data-qty-sent="5" data-qty-recv="4" data-unit-cost="89.00">
+            <td class="center">2</td>
+            <td class="mono">{{ItemCode2}}</td>
+            <td>{{ItemDesc2}}</td>
+            <td class="center">EA</td>
+            <td class="mono">B-131</td>
+            <td class="mono">SN-A1042</td>
+            <td class="right qty-sent">5</td>
+            <td class="right qty-recv">4</td>
+            <td class="right unit-cost">89.00</td>
+            <td class="right amount"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6" class="right">Totals:</td>
+            <td class="right" id="totalQtySent">0</td>
+            <td class="right" id="totalQtyRecv">0</td>
+            <td class="right">—</td>
+            <td class="right" id="grandTotal">0.00</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p id="itemsHelp" class="note">Amounts are calculated as <strong>Qty Sent × Unit Cost</strong>. Update rows or data attributes to recalc.</p>
+    </section>
+
+    <!-- DISCREPANCIES -->
+    <section class="grid-2" aria-label="Discrepancy Summary & Attachments">
+      <div class="card">
+        <h2>Discrepancy Summary</h2>
+        <dl class="kv">
+          <dt>Missing Items</dt><dd>{{MissingItemsCount}}</dd>
+          <dt>Overages</dt><dd>{{OveragesCount}}</dd>
+          <dt>Damaged</dt><dd>{{DamagedCount}}</dd>
+          <dt>Notes</dt><dd>{{DiscrepancyNotes}}</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <h2>Attachments</h2>
+        <ul class="muted" aria-label="Attachments list">
+          <li>Packing List — {{PackingListRef}}</li>
+          <li>Carrier Proof — {{PODRef}}</li>
+          <li>Photos — {{PhotoSetRef}}</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- NOTES -->
+    <section aria-label="Additional Notes">
+      <h2>Additional Notes</h2>
+      <div class="note" style="min-height: 64px;">{{FreeformNotes}}</div>
+    </section>
+
+    <!-- SIGNATURES -->
+    <section aria-label="Approvals & Sign-off">
+      <h2>Approvals & Sign‑off</h2>
+      <div class="signatures">
+        <div class="sig">
+          <div aria-label="Signature area"></div>
+          <div class="line">
+            <div>Requested by: <strong>{{RequestedBy}}</strong></div>
+            <div>Date: <time datetime="{{RequestedDateISO}}">{{RequestedDate}}</time></div>
+          </div>
+          <div class="line">
+            <div>Title: {{RequesterTitle}}</div>
+            <div>Signature: _____________</div>
+          </div>
+        </div>
+        <div class="sig">
+          <div aria-label="Signature area"></div>
+          <div class="line">
+            <div>Approved by: <strong>{{ApproverName}}</strong></div>
+            <div>Date: <time datetime="{{ApprovedDateISO}}">{{ApprovedDate}}</time></div>
+          </div>
+          <div class="line">
+            <div>Title: {{ApproverTitle}}</div>
+            <div>Signature: _____________</div>
+          </div>
+        </div>
+        <div class="sig">
+          <div aria-label="Signature area"></div>
+          <div class="line">
+            <div>Dispatched by: <strong>{{DispatcherName}}</strong></div>
+            <div>Date: <time datetime="{{DispatchedDateISO}}">{{DispatchedDate}}</time></div>
+          </div>
+          <div class="line">
+            <div>Title: {{DispatcherTitle}}</div>
+            <div>Signature: _____________</div>
+          </div>
+        </div>
+        <div class="sig">
+          <div aria-label="Signature area"></div>
+          <div class="line">
+            <div>Received by: <strong>{{ReceiverName}}</strong></div>
+            <div>Date: <time datetime="{{ReceivedISO}}">{{ReceivedOn}}</time></div>
+          </div>
+          <div class="line">
+            <div>Title: {{ReceiverTitle}}</div>
+            <div>Signature: _____________</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIT TRAIL -->
+    <section class="page-break" aria-label="Audit Trail">
+      <h2>Audit Trail</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 180px;">Timestamp</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Remarks</th>
+            <th class="mono">IP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><time datetime="{{CreatedISO}}">{{CreatedAt}}</time></td>
+            <td>{{Creator}}</td>
+            <td>Created</td>
+            <td>Initial request submitted.</td>
+            <td class="mono">192.0.2.10</td>
+          </tr>
+          <tr>
+            <td><time datetime="{{ApprovedDateISO}}">{{ApprovedDate}}</time></td>
+            <td>{{ApproverName}}</td>
+            <td>Approved</td>
+            <td>Priority: {{Priority}}.</td>
+            <td class="mono">198.51.100.44</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- FOOTER & ACTIONS -->
+    <div class="actions" role="toolbar" aria-label="Actions">
+      <button class="btn" type="button" onclick="window.print()">Print / Save PDF</button>
+      <button class="btn primary" type="button" onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <div class="muted">
+        Confidential — {{CompanyName}}. For internal use only.
+      </div>
+      <div class="page-numbers muted" aria-label="Page numbers"> </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      function formatMoney(n, currency){
+        try {
+          return new Intl.NumberFormat(undefined, { style: 'currency', currency }).format(n);
+        } catch(e){
+          return (currency || "") + " " + n.toFixed(2);
+        }
+      }
+
+      // Stamp prepared date/time
+      const prepared = document.getElementById('preparedOn');
+      const now = new Date();
+      prepared.textContent = now.toLocaleString();
+      prepared.setAttribute('datetime', now.toISOString());
+
+      // Calculate item totals
+      const currency = document.body.dataset.currency || 'USD';
+      const body = document.getElementById('itemsBody');
+      let totalQtySent = 0, totalQtyRecv = 0, grandTotal = 0;
+
+      for (const row of body.querySelectorAll('tr')) {
+        const qS = Number(row.dataset.qtySent || row.querySelector('.qty-sent')?.textContent || 0);
+        const qR = Number(row.dataset.qtyRecv || row.querySelector('.qty-recv')?.textContent || 0);
+        const unit = Number(row.dataset.unitCost || row.querySelector('.unit-cost')?.textContent || 0);
+
+        const amt = qS * unit;
+        totalQtySent += qS;
+        totalQtyRecv += qR;
+        grandTotal += amt;
+
+        const amtCell = row.querySelector('.amount');
+        if (amtCell) amtCell.textContent = formatMoney(amt, currency);
+      }
+
+      // Update footers
+      const fS = document.getElementById('totalQtySent');
+      const fR = document.getElementById('totalQtyRecv');
+      const fG = document.getElementById('grandTotal');
+      if (fS) fS.textContent = totalQtySent.toLocaleString();
+      if (fR) fR.textContent = totalQtyRecv.toLocaleString();
+      if (fG) fG.textContent = formatMoney(grandTotal, currency);
+
+      // Status chip color helper (optional: map status to class)
+      const statusText = "{{Status}}".toLowerCase();
+      const chip = document.querySelector('.chip');
+      if (chip) {
+        const map = {
+          approved: 'success',
+          completed: 'success',
+          draft: 'warning',
+          pending: 'warning',
+          rejected: 'danger',
+          cancelled: 'danger'
+        };
+        const cls = map[statusText];
+        if (cls) chip.classList.add(cls);
+      }
+    })();
+
+    function toggleTheme(){
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'light';
+      html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+  </script>
+</body>
+</html>

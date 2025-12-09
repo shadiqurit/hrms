@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Employee Transfer Report</title>
+<style>
+  :root{
+    --bg: #0f172a;          /* header background */
+    --fg: #ffffff;          /* header text */
+    --ink: #0b1220;         /* body text */
+    --muted: #667085;       /* secondary text */
+    --card: #ffffff;        /* cards / tables */
+    --line: #e4e7ec;        /* borders */
+    --accent: #2563eb;      /* primary accent */
+    --ok: #059669;          /* approved */
+    --warn: #d97706;        /* pending */
+    --danger: #b91c1c;      /* rejected */
+  }
+
+  /* Base */
+  html,body{height:100%}
+  body{
+    margin:0;
+    font: 14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
+    color:var(--ink);
+    background:#f7f7fb;
+  }
+  .container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  h1,h2,h3{margin:0 0 8px}
+  h1{font-size: 24px}
+  h2{font-size: 18px}
+  h3{font-size: 16px}
+
+  /* Header */
+  .header{
+    background: var(--bg);
+    color: var(--fg);
+    padding: 20px 24px;
+  }
+  .header .wrap{
+    max-width: 1200px; margin:0 auto; display:flex; gap:20px; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; gap:12px; align-items:center;
+  }
+  .logo{
+    width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,.15);
+    display:grid;place-items:center;font-weight:700;letter-spacing:.5px;
+  }
+  .meta{display:grid; gap:2px}
+  .kvs{display:flex; gap:16px; flex-wrap:wrap; align-items:center}
+  .kvs span{opacity:.9}
+
+  /* Controls */
+  .controls{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px;
+    margin-top:-20px;
+    display:flex; gap:12px; flex-wrap:wrap; align-items:end;
+  }
+  .field{display:grid; gap:6px}
+  .field label{font-size:12px;color:var(--muted)}
+  .field input[type="date"],
+  .field input[type="text"],
+  .field select{
+    height:36px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:#fff;min-width:180px
+  }
+  .checks{display:flex; gap:12px; flex-wrap:wrap}
+  .checks label{display:flex; gap:8px; align-items:center; font-size:13px; color:#222}
+  .btn{
+    height:36px;padding:0 12px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer
+  }
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn:active{transform: translateY(1px)}
+
+  /* Stats */
+  .stats{display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; margin:16px 0}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px;
+  }
+  .stat .num{font-size:22px;font-weight:700}
+  .stat .lbl{color:var(--muted);font-size:12px}
+
+  /* Table */
+  .table{overflow:auto; border-radius:12px; border:1px solid var(--line); background:var(--card)}
+  table{width:100%; border-collapse:collapse; min-width:960px}
+  caption{caption-side:top; text-align:left; padding:10px 12px; font-weight:600}
+  th, td{padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+  thead th{font-size:12px; color:var(--muted); white-space:nowrap; position:sticky; top:0; background:var(--card)}
+  tbody tr:hover td{background:#fafafa}
+  .mono{font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+  .chip{display:inline-flex; align-items:center; border-radius:999px; padding:2px 8px; font-size:12px; border:1px solid var(--line); background:#fff}
+  .chip.ok{color:var(--ok); border-color:color-mix(in oklab, var(--ok), #000 10%)}
+  .chip.warn{color:var(--warn); border-color:color-mix(in oklab, var(--warn), #000 10%)}
+  .chip.danger{color:var(--danger); border-color:color-mix(in oklab, var(--danger), #000 10%)}
+  .pair{white-space:nowrap}
+  .pair .arrow{opacity:.7; padding:0 6px}
+
+  /* Sections */
+  .section{margin:24px 0}
+  .section h2{margin-bottom:8px}
+  .subtle{color:var(--muted)}
+  .toc{display:flex; gap:8px; flex-wrap:wrap}
+  .toc a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none;color:#111}
+  .toc a:hover{border-color:var(--accent)}
+  .actions{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+
+  /* Signature */
+  .signatures{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px; margin-top:16px}
+  .sig{border-top:1px dotted var(--line); padding-top:8px}
+  .sig small{color:var(--muted)}
+
+  /* Print */
+  @media print{
+    body{background:#fff}
+    .header, .controls, .toc, .actions{display:none !important}
+    .container{max-width:none; padding:0}
+    .section{page-break-inside:avoid}
+    .section + .section{page-break-before:always}
+    table{min-width:0}
+  }
+</style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="header" role="banner" aria-label="Report header">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">HR</div>
+        <div class="meta">
+          <h1>Employee Transfer Report</h1>
+          <div class="kvs">
+            <span>Report ID: <strong class="mono" id="reportId">TRF-2025-1101</strong></span>
+            <span>Generated: <time id="generatedOn"></time></span>
+            <span>Prepared by: <strong id="preparedBy">HR Ops</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="kvs">
+        <span class="subtle">Confidential · Internal use only</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- ===== Controls ===== -->
+    <section class="controls" aria-label="Filters">
+      <div class="field">
+        <label for="q">Search (name, ID, reason, orgs)</label>
+        <input id="q" type="text" placeholder="e.g., E1023, relocation, Austin, R&D" />
+      </div>
+      <div class="field">
+        <label for="start">Effective date from</label>
+        <input id="start" type="date" />
+      </div>
+      <div class="field">
+        <label for="end">Effective date to</label>
+        <input id="end" type="date" />
+      </div>
+      <div class="field">
+        <label>Transfer types</label>
+        <div class="checks" role="group" aria-label="Transfer type filters">
+          <label><input type="checkbox" value="location" class="typeFilter" checked /> Location→Location</label>
+          <label><input type="checkbox" value="department" class="typeFilter" checked /> Department→Department</label>
+          <label><input type="checkbox" value="company" class="typeFilter" checked /> Company→Company</label>
+        </div>
+      </div>
+      <div class="actions" style="margin-left:auto">
+        <button class="btn" id="resetBtn" type="button" title="Clear all filters">Reset</button>
+        <button class="btn" id="exportAllBtn" type="button" title="Export current table to CSV">Export CSV</button>
+        <button class="btn primary" onclick="window.print()" type="button">Print</button>
+      </div>
+    </section>
+
+    <!-- ===== Stats ===== -->
+    <section class="stats" aria-label="Summary statistics">
+      <div class="card stat">
+        <div class="num mono" id="countAll">0</div>
+        <div class="lbl">Total transfers</div>
+      </div>
+      <div class="card stat">
+        <div class="num mono" id="countLocation">0</div>
+        <div class="lbl">Location→Location</div>
+      </div>
+      <div class="card stat">
+        <div class="num mono" id="countDepartment">0</div>
+        <div class="lbl">Department→Department</div>
+      </div>
+      <div class="card stat">
+        <div class="num mono" id="countCompany">0</div>
+        <div class="lbl">Company→Company</div>
+      </div>
+    </section>
+
+    <!-- ===== Quick TOC ===== -->
+    <section class="toc" aria-label="Jump links">
+      <a href="#all">All transfers</a>
+      <a href="#location">Location→Location</a>
+      <a href="#department">Department→Department</a>
+      <a href="#company">Company→Company</a>
+    </section>
+
+    <!-- ===== All Transfers ===== -->
+    <section id="all" class="section">
+      <div class="card" style="margin-bottom:12px">
+        <h2>All Transfers</h2>
+        <p class="subtle">Filters above apply to this view and the sections below.</p>
+      </div>
+      <div class="table" role="region" aria-label="All transfers table">
+        <table aria-describedby="allHelp">
+          <caption id="allHelp">All employee transfers matching your filters</caption>
+          <thead>
+            <tr>
+              <th scope="col">Employee</th>
+              <th scope="col">ID</th>
+              <th scope="col">Type</th>
+              <th scope="col">From → To</th>
+              <th scope="col">Context</th>
+              <th scope="col">Effective</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Requested by</th>
+              <th scope="col">Approval</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="rowsAll"></tbody>
+        </table>
+      </div>
+      <div class="signatures">
+        <div class="sig">
+          <strong>Prepared by</strong><br/>
+          <small id="sigPrepared">Name &amp; Title</small>
+        </div>
+        <div class="sig">
+          <strong>Reviewed by</strong><br/>
+          <small>HR Business Partner</small>
+        </div>
+        <div class="sig">
+          <strong>Approved by</strong><br/>
+          <small>Director, People Operations</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Location ===== -->
+    <section id="location" class="section">
+      <div class="card" style="margin-bottom:12px">
+        <h2>Location → Location</h2>
+        <p class="subtle">Transfers between physical locations (office, city, site).</p>
+      </div>
+      <div class="table" role="region" aria-label="Location transfers table">
+        <table>
+          <caption>Location transfers</caption>
+          <thead>
+            <tr>
+              <th scope="col">Employee</th>
+              <th scope="col">ID</th>
+              <th scope="col">From location → To location</th>
+              <th scope="col">Department</th>
+              <th scope="col">Company</th>
+              <th scope="col">Effective</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Approval</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="rowsLocation"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Department ===== -->
+    <section id="department" class="section">
+      <div class="card" style="margin-bottom:12px">
+        <h2>Department → Department</h2>
+        <p class="subtle">Transfers within or across business units.</p>
+      </div>
+      <div class="table" role="region" aria-label="Department transfers table">
+        <table>
+          <caption>Department transfers</caption>
+          <thead>
+            <tr>
+              <th scope="col">Employee</th>
+              <th scope="col">ID</th>
+              <th scope="col">From dept → To dept</th>
+              <th scope="col">Location</th>
+              <th scope="col">Company</th>
+              <th scope="col">Effective</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Approval</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="rowsDepartment"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Company ===== -->
+    <section id="company" class="section">
+      <div class="card" style="margin-bottom:12px">
+        <h2>Company → Company</h2>
+        <p class="subtle">Transfers between legal entities (e.g., parent ↔ subsidiary).</p>
+      </div>
+      <div class="table" role="region" aria-label="Company transfers table">
+        <table>
+          <caption>Company transfers</caption>
+          <thead>
+            <tr>
+              <th scope="col">Employee</th>
+              <th scope="col">ID</th>
+              <th scope="col">From company → To company</th>
+              <th scope="col">Location</th>
+              <th scope="col">Department</th>
+              <th scope="col">Effective</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Approval</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="rowsCompany"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+      const transfers = [
+      // Location → Location
+      { type:"location",
+        employee:{ id:"E1023", name:"John Doe", title:"Account Executive"},
+        from:{ location:"New York HQ", department:"Sales", company:"Acme Corp" },
+        to:{   location:"Austin Office", department:"Sales", company:"Acme Corp" },
+        effectiveDate:"2025-11-01",
+        reason:"Office consolidation",
+        requestedBy:"M. Patel",
+        approvedBy:"L. Nguyen",
+        approvalDate:"2025-10-15",
+        status:"Approved",
+        notes:"Relocation package tier B"
+      },
+      { type:"location",
+        employee:{ id:"E1488", name:"Priya Natarajan", title:"QA Engineer"},
+        from:{ location:"Bengaluru Tech Park", department:"Quality", company:"Acme Corp India" },
+        to:{   location:"Hyderabad Campus",   department:"Quality", company:"Acme Corp India" },
+        effectiveDate:"2025-12-01",
+        reason:"Project co-location",
+        requestedBy:"S. Rao",
+        approvedBy:"H. Chatterjee",
+        approvalDate:"2025-11-03",
+        status:"Approved"
+      },
+      { type:"location",
+        employee:{ id:"E1776", name:"Marta Ruiz", title:"Facilities Coordinator"},
+        from:{ location:"Madrid Office", department:"Workplace", company:"Acme EMEA" },
+        to:{   location:"Barcelona Office", department:"Workplace", company:"Acme EMEA" },
+        effectiveDate:"2025-12-15",
+        reason:"Family relocation request",
+        requestedBy:"R. Silva",
+        approvedBy:"",
+        approvalDate:null,
+        status:"Pending"
+      },
+
+      // Department → Department
+      { type:"department",
+        employee:{ id:"E2044", name:"Jane Smith", title:"Senior Analyst"},
+        from:{ location:"San Francisco", department:"Marketing", company:"Acme Corp" },
+        to:{   location:"San Francisco", department:"Product",   company:"Acme Corp" },
+        effectiveDate:"2025-11-18",
+        reason:"Internal mobility—skills alignment",
+        requestedBy:"D. Kim",
+        approvedBy:"B. Ortega",
+        approvalDate:"2025-11-06",
+        status:"Approved"
+      },
+      { type:"department",
+        employee:{ id:"E2330", name:"Wei Chen", title:"Data Scientist"},
+        from:{ location:"Toronto", department:"Data Science", company:"Acme Corp Canada" },
+        to:{   location:"Toronto", department:"Risk Analytics", company:"Acme Corp Canada" },
+        effectiveDate:"2025-12-02",
+        reason:"New risk program",
+        requestedBy:"A. Kapoor",
+        approvedBy:"",
+        approvalDate:null,
+        status:"Pending"
+      },
+      { type:"department",
+        employee:{ id:"E2512", name:"Fatima Al‑Saleh", title:"Support Lead"},
+        from:{ location:"Dubai", department:"Customer Support", company:"Acme MENA" },
+        to:{   location:"Dubai", department:"Enterprise Support", company:"Acme MENA" },
+        effectiveDate:"2025-10-28",
+        reason:"Promotion",
+        requestedBy:"K. Ibrahim",
+        approvedBy:"S. Haddad",
+        approvalDate:"2025-10-20",
+        status:"Approved"
+      },
+
+      // Company → Company
+      { type:"company",
+        employee:{ id:"E3008", name:"Luca Bianchi", title:"Regional Manager"},
+        from:{ location:"Milan", department:"Operations", company:"Acme Logistics S.r.l." },
+        to:{   location:"Milan", department:"Operations", company:"Acme Holdings Europe" },
+        effectiveDate:"2025-11-25",
+        reason:"Legal entity restructure",
+        requestedBy:"Corp. Legal",
+        approvedBy:"CFO, EMEA",
+        approvalDate:"2025-11-05",
+        status:"Approved"
+      },
+      { type:"company",
+        employee:{ id:"E3199", name:"Ava Johnson", title:"UX Designer"},
+        from:{ location:"Remote (US)", department:"Design", company:"Acme Studio LLC" },
+        to:{   location:"Seattle",      department:"Design", company:"Acme Corp" },
+        effectiveDate:"2026-01-10",
+        reason:"Acquisition integration",
+        requestedBy:"Design VP",
+        approvedBy:"",
+        approvalDate:null,
+        status:"Pending"
+      },
+      // Example rejected
+      { type:"location",
+        employee:{ id:"E3350", name:"Nikolai Petrov", title:"Field Technician"},
+        from:{ location:"Sofia", department:"Field Ops", company:"Acme EMEA" },
+        to:{   location:"Varna", department:"Field Ops", company:"Acme EMEA" },
+        effectiveDate:"2025-09-10",
+        reason:"Personal request",
+        requestedBy:"Employee",
+        approvedBy:"Regional Ops",
+        approvalDate:"2025-08-29",
+        status:"Rejected",
+        notes:"Coverage constraints"
+      }
+    ];
+
+    // ---------- Utilities ----------
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+    const fmtDate = (iso) => {
+      if(!iso) return "";
+      const d = new Date(iso+"T00:00:00");
+      return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
+    };
+    const statusChip = (status) => {
+      const s = (status||"").toLowerCase();
+      const cls = s==="approved" ? "ok" : s==="pending" ? "warn" : "danger";
+      return `<span class="chip ${cls}">${status||"—"}</span>`;
+    };
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+    const within = (dateISO, startISO, endISO) => {
+      if(!dateISO) return false;
+      const d = dateISO;
+      if(startISO && d < startISO) return false;
+      if(endISO && d > endISO) return false;
+      return true;
+    };
+    const includesCI = (hay, needle) => hay.toLowerCase().includes(needle.toLowerCase());
+
+    // Determine the relevant "From → To" value for a given type
+    function pairFor(r){
+      switch(r.type){
+        case "location":   return {label:"location", from:r.from.location, to:r.to.location};
+        case "department": return {label:"department", from:r.from.department, to:r.to.department};
+        case "company":    return {label:"company", from:r.from.company, to:r.to.company};
+        default: return {label:"", from:"", to:""};
+      }
+    }
+
+    function rowAll(r){
+      const p = pairFor(r);
+      const ctx =
+        r.type==="location"   ? `${esc(r.from.department)} · ${esc(r.from.company)}` :
+        r.type==="department" ? `${esc(r.from.location)} · ${esc(r.from.company)}` :
+        `${esc(r.from.location)} · ${esc(r.from.department)}`;
+      const approval =
+        r.approvedBy
+          ? `${esc(r.approvedBy)} · <span class="mono">${esc(fmtDate(r.approvalDate))}</span>`
+          : "—";
+
+      return `<tr>
+        <td><strong>${esc(r.employee.name)}</strong><br/><span class="subtle">${esc(r.employee.title)}</span></td>
+        <td class="mono">${esc(r.employee.id)}</td>
+        <td><span class="chip">${esc(r.type)}</span></td>
+        <td class="pair"><span title="From ${p.label}">${esc(p.from)}</span><span class="arrow">→</span><span title="To ${p.label}">${esc(p.to)}</span></td>
+        <td>${ctx}</td>
+        <td class="mono">${esc(fmtDate(r.effectiveDate))}</td>
+        <td>${esc(r.reason||"")}</td>
+        <td>${esc(r.requestedBy||"")}</td>
+        <td>${approval}</td>
+        <td>${statusChip(r.status)}</td>
+      </tr>`;
+    }
+
+    function rowLocation(r){
+      const approval =
+        r.approvedBy
+          ? `${esc(r.approvedBy)} · <span class="mono">${esc(fmtDate(r.approvalDate))}</span>`
+          : "—";
+      return `<tr>
+        <td><strong>${esc(r.employee.name)}</strong><br/><span class="subtle">${esc(r.employee.title)}</span></td>
+        <td class="mono">${esc(r.employee.id)}</td>
+        <td class="pair"><span>${esc(r.from.location)}</span><span class="arrow">→</span><span>${esc(r.to.location)}</span></td>
+        <td>${esc(r.from.department)}</td>
+        <td>${esc(r.from.company)}</td>
+        <td class="mono">${esc(fmtDate(r.effectiveDate))}</td>
+        <td>${esc(r.reason||"")}</td>
+        <td>${approval}</td>
+        <td>${statusChip(r.status)}</td>
+      </tr>`;
+    }
+
+    function rowDepartment(r){
+      const approval =
+        r.approvedBy
+          ? `${esc(r.approvedBy)} · <span class="mono">${esc(fmtDate(r.approvalDate))}</span>`
+          : "—";
+      return `<tr>
+        <td><strong>${esc(r.employee.name)}</strong><br/><span class="subtle">${esc(r.employee.title)}</span></td>
+        <td class="mono">${esc(r.employee.id)}</td>
+        <td class="pair"><span>${esc(r.from.department)}</span><span class="arrow">→</span><span>${esc(r.to.department)}</span></td>
+        <td>${esc(r.from.location)}</td>
+        <td>${esc(r.from.company)}</td>
+        <td class="mono">${esc(fmtDate(r.effectiveDate))}</td>
+        <td>${esc(r.reason||"")}</td>
+        <td>${approval}</td>
+        <td>${statusChip(r.status)}</td>
+      </tr>`;
+    }
+
+    function rowCompany(r){
+      const approval =
+        r.approvedBy
+          ? `${esc(r.approvedBy)} · <span class="mono">${esc(fmtDate(r.approvalDate))}</span>`
+          : "—";
+      return `<tr>
+        <td><strong>${esc(r.employee.name)}</strong><br/><span class="subtle">${esc(r.employee.title)}</span></td>
+        <td class="mono">${esc(r.employee.id)}</td>
+        <td class="pair"><span>${esc(r.from.company)}</span><span class="arrow">→</span><span>${esc(r.to.company)}</span></td>
+        <td>${esc(r.from.location)}</td>
+        <td>${esc(r.from.department)}</td>
+        <td class="mono">${esc(fmtDate(r.effectiveDate))}</td>
+        <td>${esc(r.reason||"")}</td>
+        <td>${approval}</td>
+        <td>${statusChip(r.status)}</td>
+      </tr>`;
+    }
+
+    // ---------- Filtering & Rendering ----------
+    function applyFilters(){
+      const q = $('#q').value.trim();
+      const start = $('#start').value || null;
+      const end   = $('#end').value   || null;
+      const types = $$('.typeFilter').filter(c=>c.checked).map(c=>c.value);
+
+      const filtered = transfers.filter(r=>{
+        if(types.length && !types.includes(r.type)) return false;
+        if(start || end){
+          if(!within(r.effectiveDate, start, end)) return false;
+        }
+        if(q){
+          const hay = [
+            r.employee.id, r.employee.name, r.employee.title,
+            r.from.location, r.from.department, r.from.company,
+            r.to.location,   r.to.department,   r.to.company,
+            r.reason, r.requestedBy, r.approvedBy, r.status
+          ].map(v => (v||"").toString()).join(" | ").toLowerCase();
+          if(!hay.includes(q.toLowerCase())) return false;
+        }
+        return true;
+      });
+
+      // Stats (filtered and per-type in filtered set)
+      $('#countAll').textContent = filtered.length;
+      $('#countLocation').textContent   = filtered.filter(r=>r.type==="location").length;
+      $('#countDepartment').textContent = filtered.filter(r=>r.type==="department").length;
+      $('#countCompany').textContent    = filtered.filter(r=>r.type==="company").length;
+
+      // Render All
+      $('#rowsAll').innerHTML =
+        filtered.map(rowAll).join('') || `<tr><td colspan="10">No matching records.</td></tr>`;
+
+      // Render per-type (within filtered)
+      const loc = filtered.filter(r=>r.type==="location");
+      $('#rowsLocation').innerHTML =
+        loc.map(rowLocation).join('') || `<tr><td colspan="9">No location transfers.</td></tr>`;
+
+      const dep = filtered.filter(r=>r.type==="department");
+      $('#rowsDepartment').innerHTML =
+        dep.map(rowDepartment).join('') || `<tr><td colspan="9">No department transfers.</td></tr>`;
+
+      const com = filtered.filter(r=>r.type==="company");
+      $('#rowsCompany').innerHTML =
+        com.map(rowCompany).join('') || `<tr><td colspan="9">No company transfers.</td></tr>`;
+    }
+
+    function exportVisibleTableCSV(){
+      // Export the "All Transfers" current view (matches filters)
+      const headers = ["Employee","ID","Type","From→To","Context","Effective","Reason","Requested by","Approval","Status"];
+      const rows = Array.from($('#rowsAll').querySelectorAll('tr')).map(tr=>{
+        return Array.from(tr.children).map(td => td.innerText.replace(/\s+/g,' ').trim());
+      });
+      const csv = [headers, ...rows].map(r => r.map(v=>{
+        v = v.replace(/"/g,'""');
+        return /[",\n]/.test(v) ? `"${v}"` : v;
+      }).join(",")).join("\n");
+      const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const today = new Date();
+      const stamp = today.toISOString().slice(0,10);
+      a.download = `employee-transfers-${stamp}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+      a.remove();
+    }
+
+    // ---------- Wiring ----------
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // Meta
+      $('#generatedOn').textContent =
+        new Date().toLocaleString(undefined, {year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+      $('#sigPrepared').textContent = $('#preparedBy').textContent;
+
+      // Default date range (optional): e.g., last 90 days
+      // Uncomment if desired.
+      // const now = new Date();
+      // const past = new Date(now); past.setDate(past.getDate()-90);
+      // $('#start').value = past.toISOString().slice(0,10);
+      // $('#end').value = now.toISOString().slice(0,10);
+
+      // First paint
+      applyFilters();
+
+      // Events
+      $('#q').addEventListener('input', applyFilters);
+      $('#start').addEventListener('change', applyFilters);
+      $('#end').addEventListener('change', applyFilters);
+      $$('.typeFilter').forEach(cb => cb.addEventListener('change', applyFilters));
+      $('#resetBtn').addEventListener('click', ()=>{
+        $('#q').value = '';
+        $('#start').value = '';
+        $('#end').value = '';
+        $$('.typeFilter').forEach(cb => cb.checked = true);
+        applyFilters();
+      });
+      $('#exportAllBtn').addEventListener('click', exportVisibleTableCSV);
+    });
+  </script>
+</body>
+</html>

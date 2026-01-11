@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>Register Table</title>
+
+<style>
+    body {
+        font-family: "Noto Sans Bengali", "SolaimanLipi", Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    th, td {
+        border: 1px solid #000;
+        padding: 2px;
+        text-align: center;
+        vertical-align: middle;
+        word-wrap: break-word;
+    }
+
+    th {
+        font-weight: 600;
+    }
+
+    /* Narrow columns */
+    .narrow {
+        width: 35px;
+    }
+
+    /* Wider text columns */
+    .wide {
+        width: 120px;
+        text-align: left;
+    }
+
+    /* Vertical header text */
+    .vertical {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: nowrap;
+        padding: 6px 2px;
+    }
+
+    /* Highlighted cells (marker style) */
+    .highlight {
+        background-color: #fff59d;
+        font-weight: bold;
+    }
+
+    /* Signature / remarks look */
+    .handwritten {
+        font-style: italic;
+    }
+
+    /* Print optimization */
+    @media print {
+        body {
+            margin: 0;
+        }
+        table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th class="wide">শ্রমিকের নাম<br>পদবি<br>রেজিস্ট্রেশন</th>
+
+            <th class="narrow vertical">মজুরি স্কেল</th>
+            <th class="narrow vertical">মূল বেতন</th>
+            <th class="narrow vertical">মহানগর ভাতা</th>
+            <th class="narrow vertical">বাড়ি ভাড়া</th>
+            <th class="narrow vertical">চিকিৎসা ভাতা</th>
+            <th class="narrow vertical">যাতায়াত ভাতা</th>
+
+            <th class="narrow vertical highlight">মোট মজুরি</th>
+
+            <th class="narrow vertical">অগ্রিম</th>
+            <th class="narrow vertical">অন্যান্য কর্তন</th>
+
+            <th class="narrow vertical highlight">নেট প্রদান</th>
+
+            <th class="narrow vertical">উপস্থিত দিন</th>
+            <th class="narrow vertical">অনুপস্থিত দিন</th>
+
+            <th class="wide">মন্তব্য / স্বাক্ষর</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td class="wide">
+                আব্দুল আলিম<br>
+                হেল্পার<br>
+                ১২৩৪৫
+            </td>
+
+            <td>৬</td>
+            <td class="highlight">৮,৪৮৫</td>
+            <td>৩,০০০</td>
+            <td>৪,০০০</td>
+            <td>৯৫০</td>
+            <td>৪৫০</td>
+
+            <td class="highlight">১৬,৮৮৫</td>
+
+            <td>০</td>
+            <td>০</td>
+
+            <td class="highlight">১৬,৮৮৫</td>
+
+            <td>২৬</td>
+            <td>০</td>
+
+            <td class="handwritten">✔</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
